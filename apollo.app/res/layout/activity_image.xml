@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/layout_root" android:orientation="vertical" android:background="@color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <apollo.view.MultiImageView android:id="@id/pagerview" android:background="@android:color/black" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+
+
+    <LinearLayout
+        android:id="@id/layout_top"
+        style="@style/title_margin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@drawable/title_bg"
+        android:gravity="center_vertical" >
+
+        <Button android:layout_gravity="left|center" android:id="@id/back" android:background="@drawable/title_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back" style="@style/comm_controls" />
+        <TextView android:gravity="center" android:layout_gravity="center_vertical" android:id="@id/top_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" android:layout_weight="1.0" style="@style/title_info" />
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.0">
+            <Button android:id="@id/save" android:background="@drawable/title_comm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/save" style="@style/comm_controls" />
+            <ProgressBar android:layout_gravity="center" android:id="@id/progress" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminateDrawable="@drawable/progressbar" style="?android:attr/progressBarStyleSmall" />
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

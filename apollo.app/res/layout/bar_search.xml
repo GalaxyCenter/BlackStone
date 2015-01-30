@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.miscwidgets.widget.Panel xmlns:android="http://schemas.android.com/apk/res/android" xmlns:panel="http://schemas.android.com/apk/res/apollo.app" android:id="@id/layout_search" android:layout_width="fill_parent" android:layout_height="wrap_content" panel:animationDuration="1000" panel:content="@id/layout_bar" panel:linearFlying="true" panel:position="left">
+  <LinearLayout android:id="@id/layout_bar" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginLeft="4.0dip" android:layout_weight="1.0" android:background="@drawable/home_search_bar" android:gravity="center_vertical" android:orientation="horizontal">
+      <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="2.0dip" android:layout_marginRight="4.0dip" android:src="@drawable/icon_search" />
+      <EditText android:id="@id/text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="left|center" android:layout_weight="1.0" android:background="@null" android:singleLine="true" android:textColorHint="#ffa5a6a8" android:textSize="14.0sp" />
+      <Button android:id="@id/clean" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:background="@drawable/home_search_quit" />
+    </LinearLayout>
+  </LinearLayout>
+</org.miscwidgets.widget.Panel>

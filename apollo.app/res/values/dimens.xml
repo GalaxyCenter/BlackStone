@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="adp_head_need_refresh_delta">10.0dip</dimen>
+    <dimen name="adp_foot_need_refresh_delta">30.0dip</dimen>
+    <dimen name="adp_head_view_height">80.0dip</dimen>
+    <dimen name="adk_default_image_height">174.0dip</dimen>
+    <dimen name="person_post_reply_ori_padding">10.0dip</dimen>
+    <dimen name="voice_play_bnt_text_size_0">18.0dip</dimen>
+    <dimen name="voice_play_bnt_text_size_1">14.0dip</dimen>
+    <dimen name="voice_play_bnt_width_0">92.0dip</dimen>
+    <dimen name="voice_play_bnt_height_0">37.0dip</dimen>
+    <dimen name="voice_play_bnt_width_1">75.0dip</dimen>
+    <dimen name="voice_play_bnt_height_1">30.0dip</dimen>
+    <dimen name="navigation_bar_height">46.0dip</dimen>
+    <dimen name="jigsawSelectedWidth">76.0dip</dimen>
+    <dimen name="jigsawSelectedHeight">82.0dip</dimen>
+    <dimen name="jigsawSelectedImageWidth">64.0dip</dimen>
+    <dimen name="jigsawDelWidth">30.0dip</dimen>
+    <dimen name="onedip">1.0dip</dimen>
+    <item type="dimen" name="wait_chat_large_circle_radius">@dimen/ds242</item>
+    <item type="dimen" name="wait_chat_large_circle_stroke">@dimen/ds8</item>
+    <item type="dimen" name="wait_chat_person_circle_width">@dimen/ds120</item>
+    <item type="dimen" name="wait_chat_person_circle_height">@dimen/ds120</item>
+    <item type="dimen" name="wait_chat_person_circle_lwidth">@dimen/ds140</item>
+    <item type="dimen" name="wait_chat_person_circle_lheight">@dimen/ds140</item>
+    <item type="dimen" name="loading_view_width">@dimen/ds150</item>
+    <item type="dimen" name="loading_view_height">@dimen/ds150</item>
+    <item type="dimen" name="loading_circle_radius">@dimen/ds50</item>
+    <item type="dimen" name="loading_circle_stroke">@dimen/ds2</item>
+    <item type="dimen" name="loading_small_normal_circle_radius">@dimen/ds6</item>
+    <item type="dimen" name="loading_small_light_circle_radius">@dimen/ds8</item>
+    <item type="dimen" name="loading_circle_distance">@dimen/ds10</item>
+    <item type="dimen" name="tip_view_height">@dimen/ds126</item>
+    <item type="dimen" name="tip_view_image_width">@dimen/ds80</item>
+    <item type="dimen" name="tip_view_image_height">@dimen/ds80</item>
+    <item type="dimen" name="tip_view_padding_left">@dimen/ds38</item>
+    <item type="dimen" name="tip_view_padding_right">@dimen/ds20</item>
+    <item type="dimen" name="tip_view_text_marginleft">@dimen/ds18</item>
+    <item type="dimen" name="tip_view_button_height">@dimen/ds70</item>
+    <item type="dimen" name="tip_view_button_marginright">@dimen/ds20</item>
+    <item type="dimen" name="head_view_circle_bg">@dimen/ds4</item>
+    <dimen name="wait_chat_large_circle_margintop">40.0dip</dimen>
+    <dimen name="wait_chat_large_circle_marginbottom">30.0dip</dimen>
+    <dimen name="browser_tabwindow_height">33.0dip</dimen>
+    <dimen name="browser_float_searchbox_height">40.0dip</dimen>
+    <dimen name="browser_browser_float_searchbox_shadow">4.0dip</dimen>
+    <dimen name="browser_bottom_toolbar_height">48.0dip</dimen>
+    <dimen name="browser_progress_bar_height">4.0dip</dimen>
+    <dimen name="browser_checkmark_area">40.0dip</dimen>
+    <dimen name="browser_about_margin_vertical">12.0dip</dimen>
+    <dimen name="browser_about_margin_horizontal">13.0dip</dimen>
+    <dimen name="browser_workspace_dot_margin">5.0dip</dimen>
+    <dimen name="browser_addview_height">116.0dip</dimen>
+    <dimen name="browser_addview_top_margin">10.0dip</dimen>
+    <dimen name="browser_stop_loading_icon_size">30.0dip</dimen>
+    <dimen name="browser_clear_content_icon_size">30.0dip</dimen>
+    <dimen name="browser_stop_loading_icon_margin_right">8.0dip</dimen>
+    <dimen name="browser_clear_content_icon_size_right">8.0dip</dimen>
+    <dimen name="browser_popup_window_padding">30.0dip</dimen>
+    <dimen name="browser_newding_pop_in_home_top">30.0dip</dimen>
+    <dimen name="browser_newding_pop_in_home_right">50.0dip</dimen>
+    <dimen name="browser_newding_pop_in_manager_top">68.0dip</dimen>
+    <dimen name="newding_pop_in_manager_right">50.0dip</dimen>
+    <dimen name="browser_digital_clock_time_margin_top">0.0dip</dimen>
+    <dimen name="browser_digital_clock_time_margin_left">13.299988dip</dimen>
+    <dimen name="browser_digital_clock_time_margin_right">13.299988dip</dimen>
+    <dimen name="browser_digital_clock_time_divider_top">39.299988dip</dimen>
+    <dimen name="browser_digital_clock_time_width">68.0dip</dimen>
+    <dimen name="browser_digital_clock_time_height">82.599976dip</dimen>
+    <dimen name="browser_digital_clock_time_height_half">40.0dip</dimen>
+    <dimen name="browser_digital_clock_time_textsize">56.0sp</dimen>
+    <dimen name="browser_digital_clock_time_textoffset">3.0dip</dimen>
+    <dimen name="browser_ding_manager_item_single_padding_left">16.0dip</dimen>
+    <dimen name="browser_about_product_more">48.0dip</dimen>
+    <dimen name="browser__progress_bar_height">5.0dip</dimen>
+    <dimen name="browser_wv_select_popwindow_width">135.0dip</dimen>
+    <dimen name="browser_wv_select_popwindow_height">40.0dip</dimen>
+    <dimen name="browser_context_menu_item_height">40.0dip</dimen>
+    <dimen name="browser_context_menu_item_tv_font_size">19.0dip</dimen>
+    <dimen name="browser_wv_select_popwindow_position">100.0dip</dimen>
+    <dimen name="browser_ad_browser_tip">12.0dip</dimen>
+    <dimen name="browser_ad_browser_tip_ok">12.0dip</dimen>
+    <dimen name="browser_ad_browser_tip_cancel">12.0dip</dimen>
+    <dimen name="square_search_line_divider">1.0dip</dimen>
+    <dimen name="square_search_line_divider_2">1.0px</dimen>
+    <dimen name="daily_recommend_line">1.0px</dimen>
+    <dimen name="fontSize_superSmall">10.0sp</dimen>
+    <dimen name="fontSize_small">11.0sp</dimen>
+    <dimen name="fontSize_middle">14.0sp</dimen>
+    <dimen name="fontSize_big">16.0sp</dimen>
+    <dimen name="fontSize_superBig">17.0sp</dimen>
+    <dimen name="fontSize_hugeBig">20.0sp</dimen>
+    <dimen name="activity_horizontal_margin">16.0dip</dimen>
+    <dimen name="activity_vertical_margin">16.0dip</dimen>
+    <dimen name="search_box_margin">6.0dip</dimen>
+    <dimen name="fontSize_middleBig">15.0sp</dimen>
+    <dimen name="fontSize_moreBig">18.0sp</dimen>
+    <dimen name="fontSize_middleHugeBig">22.0sp</dimen>
+    <dimen name="floating_fontSize_life">16.0sp</dimen>
+    <dimen name="floating_weather_fontSize">32.0px</dimen>
+    <dimen name="floating_weather_fontSize_middle">16.0px</dimen>
+    <dimen name="floating_weather_text_button_padding">8.0dip</dimen>
+    <dimen name="floating_weather_date_size">14.0px</dimen>
+    <dimen name="floating_famous_icon_size">45.0dip</dimen>
+    <dimen name="floating_indicator_padding">4.0dip</dimen>
+    <dimen name="floating_width_y">0.5dip</dimen>
+    <dimen name="floating_mybar_item_padding_left">7.5dip</dimen>
+    <dimen name="floating_mybar_item_signin_margin_right">5.0dip</dimen>
+    <dimen name="floating_mybar_item_level_padding_top">1.5dip</dimen>
+    <dimen name="floating_mybar_login_button_height">40.0dip</dimen>
+    <dimen name="floating_mybar_login_button_width">150.0dip</dimen>
+    <dimen name="floating_mybar_login_button_margin_top">20.0dip</dimen>
+    <dimen name="floating_mybar_empty_view_margin_left">10.0dip</dimen>
+    <dimen name="floating_mybar_empty_text_line_spacing">5.0dip</dimen>
+    <dimen name="floating_mybar_empty_go_button_width">127.5dip</dimen>
+    <dimen name="floating_mybar_empty_go_button_margin_top">15.0dip</dimen>
+    <dimen name="floating_mybar_empty_go_button_margin_left">5.0dip</dimen>
+    <dimen name="floating_mybar_gridview_margin_left">10.0dip</dimen>
+    <dimen name="floating_mybar_gridview_vertical_spacing">10.0dip</dimen>
+</resources>

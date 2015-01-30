@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item name="ok" type="id">false</item>
+
+    <item name="select_all" type="id">false</item>
+    
+    <item name="gone" type="id">false</item>
+    <item name="iconQunZu" type="id">false</item>
+    <item name="iconWeixinTimeline" type="id">false</item>
+    <item name="iconWeixin" type="id">false</item>
+    <item name="iconQZone" type="id">false</item>
+    <item name="iconQQWeibo" type="id">false</item>
+    <item name="iconSinaWeibo" type="id">false</item>
+    <item name="iconRenren" type="id">false</item>
+    
+    <item name="post_filter_user" type="id">false</item>
+    <item name="post_quote" type="id">false</item>
+    <item name="post_reply" type="id">false</item>
+    <item name="post_copy" type="id">false</item>
+    
+   <item name="select_w200" type="id">false</item>
+    <item name="layout_search" type="id">false</item>
+    <item name="layout_root" type="id"></item>
+    <item name="layout_top" type="id">false</item>
+    <item name="layout_top_middle" type="id">false</item>
+    <item name="save" type="id">false</item>
+    <item name="icon" type="id">false</item>
+    <item name="clean" type="id">false</item>
+    <item name="introduce" type="id">false</item>
+    <item name="edit_layout" type="id">false</item>
+    <item name="user_layout" type="id">false</item>
+    <item name="layout_bar" type="id">false</item>
+    <item name="layout_content" type="id">false</item>
+    <item name="attention" type="id">false</item>
+    <item name="attention_layout" type="id">false</item>
+    <item name="attention_progress" type="id">false</item>
+    
+    <item name="top_forums" type="id">false</item>
+    <item name="like_forums" type="id">false</item>
+    
+    
+    <item name="gender" type="id">false</item>
+    <item name="cancel" type="id">false</item>
+    <item name="tv_msg" type="id">false</item>
+    <item name="loading" type="id">false</item>
+    <item name="radio_home" type="id">false</item>
+    <item name="radio_forum" type="id">false</item>
+    <item name="radio_message" type="id">false</item>
+    <item name="radio_person_info" type="id">false</item>
+    <item name="radio_more" type="id">false</item>
+    <item name="main_radio" type="id">false</item>
+    <item name="message_mention" type="id">false</item>
+    <item name="message_person" type="id">false</item>
+    <item name="home_title" type="id">false</item>
+    <item name="login" type="id">false</item>
+    <item name="search" type="id">false</item>
+    <item name="refresh" type="id">false</item>
+    <item name="mScrollView" type="id">false</item>
+    <item name="hotspot_item" type="id">false</item>
+    <item name="hotspot_webview_item" type="id">false</item>
+    <item name="home_hotspot0" type="id">false</item>
+    <item name="home_hotspot1" type="id">false</item>
+    <item name="home_hotspot2" type="id">false</item>
+    <item name="home_hotspot3" type="id">false</item>
+    <item name="home_hotspot4" type="id">false</item>
+    <item name="home_hotspot5" type="id">false</item>
+    <item name="home_hotspot6" type="id">false</item>
+    <item name="home_hotspot7" type="id">false</item>
+    <item name="baner" type="id">false</item>
+    <item name="banner_layout" type="id">false</item>
+    <item name="tag_view0" type="id">false</item>
+    <item name="tag_view1" type="id">false</item>
+    <item name="tag_view2" type="id">false</item>
+    <item name="tag_view3" type="id">false</item>
+    <item name="tag_view4" type="id">false</item>
+    <item name="tag_view5" type="id">false</item>
+    <item name="tag_view6" type="id">false</item>
+    <item name="tag_view7" type="id">false</item>
+    
+    <item name="text" type="id">false</item>
+    <item name="number" type="id">false</item>
+     
+    <item name="pagerview" type="id">false</item>
+    <item name="banner_text" type="id">false</item>
+    <item name="image1" type="id">false</item>
+    <item name="home_webView" type="id">false</item>
+    <item name="webview_fail_imageview" type="id">false</item>
+	
+    <item name="splash_logo" type="id">false</item>
+    <item name="bottom_bar" type="id">false</item>
+    <item name="skip_floor" type="id">false</item>
+    <item name="target_floor" type="id">false</item>
+    <item name="total_floor" type="id">false</item>
+    <item name="reply" type="id">false</item>
+    <item name="post" type="id">false</item>
+    <item name="send" type="id">false</item>
+    <item name="camera" type="id">false</item>
+    <item name="more" type="id">false</item>
+     <item name="footer_title" type="id">false</item>
+     <item name="top_title" type="id">false</item>
+     <item name="back" type="id">false</item>
+     <item name="home" type="id">false</item>
+     <item name="progress" type="id">false</item>
+     <item name="foot_progress" type="id">false</item>
+     
+     <item name="list" type="id">false</item>
+     
+     <item name="mark" type="id">mark</item>
+     
+     <item name="tofrs_textview" type="id">false</item>
+     
+     <item name="frs_ll_bt_good" type="id">false</item>
+     <item name="enter" type="id">false</item>
+     <item name="author" type="id">false</item>
+     <item name="postdate" type="id">false</item>
+     
+     <item name="user_head_icon" type="id">false</item>
+     
+     <item name="thread_user_approved" type="id">false</item>
+     <item name="thread_subject" type="id">false</item>
+     <item name="thread_hasimage" type="id">false</item>
+     <item name="thread_views" type="id">false</item>
+     <item name="thread_icon_view" type="id">false</item>
+     <item name="thread_replies" type="id">false</item>
+     <item name="thread_icon_reply" type="id">false</item>
+     <item name="thread_body" type="id">false</item>
+     
+     <item name="post_user_approved" type="id">false</item>
+     <item name="post_floor" type="id">false</item>
+     
+     <item name="post_subject" type="id">false</item>
+     <item name="post_body" type="id">false</item>
+     
+     
+     <item name="text_error" type="id">false</item>
+     <item name="text_info" type="id">false</item>
+     <item name="text_title_account" type="id">false</item>
+     <item name="text_title_vcode" type="id">false</item>
+     <item name="login_edit_account" type="id">false</item>
+     <item name="button_account_del" type="id">false</item>
+     <item name="text_title_password" type="id">false</item>
+     <item name="login_edit_password" type="id">false</item>
+     <item name="button_pass_del" type="id">false</item>
+     <item name="login_input_under" type="id">false</item>
+     <item name="button_vcode_del" type="id">false</item>
+     <item name="edit_vcode" type="id">false</item>
+     <item name="image_progress" type="id">false</item>
+     <item name="button_vcode_refresh" type="id">false</item>
+     <item name="frs_tv_title" type="id">false</item>
+     <item name="text_login" type="id">false</item>
+     <item name="progress_login" type="id">false</item>
+     <item name="triangle" type="id">false</item>
+     
+     <item name="image_vcode1" type="id">false</item>
+     <item name="image_vcode2" type="id">false</item>
+     <item name="login_bt_reg" type="id">false</item>
+     <item name="layout_login" type="id">false</item>
+     <item name="layout_account" type="id">false</item>
+     <item name="layout_password" type="id">false</item>
+     <item name="layout_vcode" type="id">false</item>
+     <item name="add" type="id">false</item>
+     <item name="edit" type="id">false</item>
+     <item name="delete" type="id">false</item>
+     <item name="account" type="id">false</item>
+     <item name="active" type="id">false</item>
+     <item name="hold" type="id">false</item>
+     <item name="face_view" type="id">false</item>
+     <item name="tools" type="id">false</item>
+     <item name="image" type="id">false</item>
+     <item name="select_face" type="id">false</item>
+     <item name="select_follow" type="id">false</item>
+     <item name="select_image" type="id">false</item>
+     <item name="name" type="id">false</item>
+     
+     <item name="grid" type="id">false</item>
+     <item name="album_subject" type="id">false</item>
+     <item name="thumbnail" type="id">false</item>
+     
+     <item name="trymyRV" type="id">false</item>
+     <item name="waterfall_scroll" type="id">false</item>
+     <item name="waterfall_container" type="id">false</item>
+     <item name="news_list" type="id">false</item>
+     <item name="news_title" type="id">false</item>
+     <item name="news_time" type="id">false</item>
+     <item name="news_pic" type="id">false</item>
+     
+     <item name="pull_to_refresh_header" type="id">false</item>
+     <item name="pull_to_refresh_progress" type="id">false</item>
+     <item name="pull_to_refresh_image" type="id">false</item>
+     <item name="pull_to_refresh_text" type="id">false</item>
+     <item name="pull_to_refresh_updated_at" type="id">false</item>
+     
+     <item name="swipe_front" type="id">false</item>
+     <item name="swipe_back" type="id">false</item>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/backgroundcolor" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:swipe="http://schemas.android.com/apk/res-auto">
+  
+    <apollo.widget.SwipeListView android:id="@id/list" android:background="@color/backgroundcolor" android:padding="0.0px" android:fadingEdge="vertical" 
+        android:fadingEdgeLength="3.0dip" android:layout_width="match_parent" android:layout_height="wrap_content" android:listSelector="@drawable/list_selector" 
+        android:cacheColorHint="@android:color/transparent" android:divider="@drawable/list_divider" android:dividerHeight="2.0dip" android:layout_below="@id/layout_top" 
+        android:smoothScrollbar="true" 
+        swipe:editLayout="@id/edit_layout"
+        swipe:enableEditMode="true"/>
+    <LinearLayout android:layout_gravity="top" android:id="@id/layout_top" android:background="@drawable/title_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true" style="@style/title_margin">
+        <Button android:layout_gravity="center_vertical" android:id="@id/back" android:background="@drawable/title_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back" style="@style/comm_controls" />
+        <TextView android:gravity="center_horizontal" android:layout_gravity="center_vertical" android:id="@id/top_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:singleLine="true" android:layout_weight="1.0" style="@style/title_info" />
+        <Button android:layout_gravity="center_vertical" android:id="@id/add" android:background="@drawable/title_comm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/add" style="@style/comm_controls" android:visibility="gone"/>
+   		<Button android:layout_gravity="center_vertical" android:id="@id/select_all" android:background="@drawable/title_comm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/selecte_all" style="@style/comm_controls" android:visibility="gone"/>
+   		<Button android:layout_gravity="center_vertical" android:id="@id/ok" android:background="@drawable/title_comm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ok" style="@style/comm_controls" android:visibility="gone"/>
+     </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListView android:id="@id/list" android:background="@drawable/more_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:listSelector="@drawable/more_item_s" android:cacheColorHint="@color/black" android:divider="@color/more_divider" android:dividerHeight="1.0dip" />
+    <ImageView android:layout_gravity="right" android:id="@id/triangle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="45.0dip" android:src="@drawable/triangle" />
+</LinearLayout>

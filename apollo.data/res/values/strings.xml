@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="error_login_fault">登录失败，无效的用户名或密码</string>
+    <string name="error_post_fault">回复帖子发生错误</string>
+    <string name="error_post_msg_fault">发送消息发生错误</string>
+    <string name="error_section_not_found">加载板块信息出错，请稍后刷新。</string>
+	<string name="error_post_not_found">加载帖子发生错误，请稍后再刷新。</string>
+	<string name="error_system">未知错误，请稍后刷新</string>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/backgroundcolor" android:orientation="vertical">
+  <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/bottom_bar" android:layout_below="@id/layout_top" android:layout_weight="1.0">
+    <ListView android:id="@id/list" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#fff1f1f1" android:cacheColorHint="@android:color/transparent" android:divider="@drawable/list_divider" android:fadingEdge="none" android:listSelector="@drawable/list_selector" android:smoothScrollbar="true" android:visibility="gone" />
+    <ProgressBar android:id="@id/progress" style="?android:attr/progressBarStyleInverse" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:indeterminateDrawable="@drawable/progressbar" />
+  </FrameLayout>
+  <RelativeLayout android:id="@id/layout_top" style="@style/title_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="top" android:background="@drawable/title_bg" android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@id/layout_top_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal" >
+
+        <TextView android:id="@id/top_title" style="@style/title_info" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_weight="1.0" android:singleLine="true" />
+        <ImageView android:id="@id/more" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_marginLeft="8.0dip" android:src="@drawable/title_good" />
+      </LinearLayout>
+    <Button android:id="@id/post" style="@style/comm_controls" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_gravity="center_vertical" android:background="@drawable/title_comm" android:text="@string/post_message" />
+  </RelativeLayout>
+</RelativeLayout>

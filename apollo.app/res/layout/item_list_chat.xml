@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="6dp">
+  <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal">
+    <TextView android:id="@id/postdate" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/Theme.Apollo.MessageDate" />
+  </LinearLayout>
+  <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:layout_marginLeft="5dp">
+    <ImageView android:id="@id/user_head_icon" android:layout_width="52dp" android:layout_height="52dp" android:clickable="true" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" />
+    <apollo.view.CustomTextView android:id="@id/post_body" android:layout_toRightOf="@id/user_head_icon" android:layout_marginLeft="10dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/chatfrom_bg" style="@style/Theme.Apollo.MessageBody" />
+  </RelativeLayout>
+</LinearLayout>

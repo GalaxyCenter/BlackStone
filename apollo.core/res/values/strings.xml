@@ -1,0 +1,7 @@
+<resources>
+	<string name="web_url"> 详细地址</string>
+	<string name="post_body_tail">\r\n\r\n--来自最有情怀可以 #发表情# 的天涯客户端--</string>
+	<string name="error_post_out_of_range">亲~已经没有更多内容啦~</string>
+	<string name="error_draft_not_found">草稿箱是空的~</string>
+	<string name="error_request_img">啊哦，图裂了~</string>
+</resources>

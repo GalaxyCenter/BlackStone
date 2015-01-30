@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_button_color">#ffbbbbbb</color>
+    <color name="backgroundcolor">#fff0f1f1</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="gray">#ff9c9d9d</color>
+    <color name="more_divider">#ff1c1c1c</color>
+    <color name="more_text_color">#fff3f3f3</color>
+    <color name="main_button_hightlight_color">#ff30a5ff</color>
+    <color name="write_color">#ff3b3b3b</color>
+    <color name="write_hint_color">#ffa5a6a8</color>
+    <color name="transparent">#00000000</color>
+    <color name="window_bg">#fff0f3f6</color>
+    <color name="tab_hightlight_text_color">#ff0054c6</color>
+    <color name="tab_text_color">#ff3b3b3b</color>
+    <color name="share_to">#ff262626</color>
+    <color name="share_to_1">#ff738199</color>
+    <color name="share_copy_pb_url">#ffffffff</color>
+    <color name="share_copy_pb_url_1">#ffeeeeee</color>
+    <color name="cp_bg_line_b">#ffe1e3e5</color>
+    <color name="listLineColor">#e6e6e6</color>
+    <color name="itemBgColor">#fefefe</color>
+    <color name="itemSelectColor">#f0f0f0</color>
+ 
+    <color name="itemdisabled">#f3f3f4</color>
+</resources>

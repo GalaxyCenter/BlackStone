@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/layout_content"  xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/backgroundcolor" android:orientation="vertical">
+  <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/bottom_bar" android:layout_below="@id/layout_top" android:layout_weight="1.0">
+    <ListView android:id="@id/list" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/backgroundcolor" android:cacheColorHint="@android:color/transparent" android:divider="@drawable/list_divider" android:fadingEdge="none" android:listSelector="@drawable/list_selector" android:smoothScrollbar="true" android:visibility="gone" />
+    <ProgressBar android:id="@id/progress" style="?android:attr/progressBarStyleInverse" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:indeterminateDrawable="@drawable/progressbar" />
+  </FrameLayout>
+  <LinearLayout android:id="@id/layout_top" style="@style/title_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="top" android:background="@drawable/title_bg" android:orientation="horizontal">
+    <Button android:id="@id/back" style="@style/comm_controls" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:background="@drawable/title_back" android:text="@string/back" />
+    <LinearLayout android:id="@id/layout_top_middle" style="@style/title_3_info" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_weight="1.0" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="horizontal">
+      <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="horizontal">
+        <TextView android:id="@id/top_title" style="@style/title_info" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_weight="1.0" android:singleLine="true" />
+        <ImageView android:id="@id/more" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_marginLeft="8.0dip" android:src="@drawable/title_good" />
+      </LinearLayout>
+    </LinearLayout>
+    <Button style="@style/comm_controls" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:background="@drawable/title_write" android:clickable="false" android:visibility="invisible" />
+    <Button android:id="@id/search" style="@style/comm_controls" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:background="@drawable/title_search" android:visibility="gone" />
+  </LinearLayout>
+  <LinearLayout android:id="@id/bottom_bar" android:layout_width="fill_parent" android:layout_height="54.0dip" android:layout_alignParentBottom="true" android:background="@drawable/pb_bottom_bar_bg" android:gravity="center_vertical">
+    <Button android:id="@id/refresh" style="@style/frs_pb_bottom_bar" android:drawableTop="@drawable/frs_pb_bottom_btn_refresh" android:text="@string/refresh" />
+    <Button android:id="@id/camera" style="@style/frs_pb_bottom_bar" android:drawableTop="@drawable/frs_bottom_camera" android:text="@string/camera" />
+    <Button android:id="@id/post" style="@style/frs_pb_bottom_bar" android:drawableTop="@drawable/frs_bottom_write" android:text="@string/post" />
+  </LinearLayout>
+</RelativeLayout>

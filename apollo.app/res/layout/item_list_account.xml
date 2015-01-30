@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+  <ImageView android:id="@id/user_head_icon" android:background="@drawable/person_photo_bg" android:padding="5.0dip" android:clickable="true" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginLeft="10.0dip" android:src="@drawable/person_photo" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+  <LinearLayout android:orientation="horizontal" android:id="@id/user_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="5.0dip" android:layout_marginRight="10.0dip" android:layout_toLeftOf="@id/edit_layout" android:layout_toRightOf="@id/user_head_icon" android:layout_alignTop="@id/user_head_icon">
+    <TextView android:textSize="13.0sp" android:textColor="#ff3b3b3b" android:id="@id/account" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="15.0dip" android:layout_marginRight="15.0dip" android:layout_marginBottom="15.0dip" android:singleLine="true" android:layout_weight="1.0" />
+  </LinearLayout>
+
+  <RelativeLayout
+      android:id="@id/edit_layout"
+      android:layout_width="80.0dip"
+      android:layout_height="50.0dip"
+      android:layout_alignParentRight="true"
+      android:layout_centerVertical="true">
+
+    <Button
+        android:id="@id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/attention_cancel"
+        android:focusable="false"
+        android:text="@string/delete"
+        android:textColor="@color/white"
+        android:textSize="13.0sp" />
+
+  </RelativeLayout>
+
+  <ImageView
+      android:id="@id/active"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBottom="@id/user_head_icon"
+      android:layout_alignRight="@id/user_head_icon"
+      android:visibility="gone"
+      android:src="@drawable/account_active" />
+
+</RelativeLayout>

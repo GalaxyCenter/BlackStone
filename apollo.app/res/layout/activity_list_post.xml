@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/backgroundcolor" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="16.0sp" android:textColor="#ff333333" android:gravity="center_vertical" android:id="@id/tofrs_textview" android:background="@drawable/my_title_bg_hl" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="38.0dip" android:drawableRight="@drawable/list_arrow" android:layout_below="@id/layout_top" />
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/bottom_bar" android:layout_below="@id/tofrs_textview">
+        <ListView android:id="@id/list" android:background="@color/backgroundcolor" android:padding="0.0px" android:fadingEdge="vertical" android:fadingEdgeLength="3.0dip" android:layout_width="match_parent" android:layout_height="match_parent" android:listSelector="@drawable/list_selector" android:cacheColorHint="@android:color/transparent" android:divider="@drawable/list_divider" android:dividerHeight="2.0dip" android:smoothScrollbar="true" />
+        <ProgressBar android:layout_gravity="center" android:id="@id/progress" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminateDrawable="@drawable/progressbar" style="?android:attr/progressBarStyleInverse" />
+    </FrameLayout>
+    <LinearLayout android:layout_gravity="top" android:id="@id/layout_top" android:background="@drawable/title_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true" style="@style/title_margin">
+        <Button android:layout_gravity="center_vertical" android:id="@id/back" android:background="@drawable/title_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back" style="@style/comm_controls" />
+        <TextView android:gravity="center" android:layout_gravity="center_vertical" android:id="@id/top_title" android:layout_width="wrap_content" android:layout_height="fill_parent" android:singleLine="true" android:layout_weight="1.0" style="@style/title_3_info" />
+        <Button android:layout_gravity="center_vertical" android:id="@id/refresh" android:background="@drawable/title_refresh" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" style="@style/comm_controls" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/bottom_bar" android:background="@drawable/pb_bottom_bar_bg" android:layout_width="fill_parent" android:layout_height="54.0dip" android:layout_alignParentBottom="true">
+        <Button android:id="@id/refresh" android:visibility="gone" android:text="@string/refresh" android:drawableTop="@drawable/frs_bottom_refresh" style="@style/frs_pb_bottom_bar" />
+        <Button android:id="@id/skip_floor" android:text="@string/skip_floor" android:drawableTop="@drawable/pb_bottom_btn_skippage" style="@style/frs_pb_bottom_bar" />
+        <Button android:id="@id/reply" android:text="@string/reply" android:drawableTop="@drawable/pb_bottom_btn_reply" style="@style/frs_pb_bottom_bar" />
+        <Button android:layout_gravity="right" android:id="@id/more" android:text="@string/more" android:drawableTop="@drawable/pb_bottom_btn_more" style="@style/frs_pb_bottom_bar" />
+    </LinearLayout>
+</RelativeLayout>

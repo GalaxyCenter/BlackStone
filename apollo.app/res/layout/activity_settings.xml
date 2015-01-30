@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical" >
+	<LinearLayout android:background="@drawable/title_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true" style="@style/title_margin">
+        <Button android:layout_gravity="center_vertical" android:id="@id/back" android:background="@drawable/title_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back" style="@style/comm_controls" />
+        <TextView android:gravity="center_horizontal" android:layout_gravity="center_vertical" android:id="@id/top_title" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="23.0dip" android:singleLine="true" android:layout_weight="1.0" style="@style/title_info" />
+    </LinearLayout>
+    
+    <ListView
+        android:id="@android:id/list"
+        android:background="#ededed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/listLineColor"
+        android:dividerHeight="1dp"
+        android:footerDividersEnabled="true"
+        android:fadeScrollbars="true"
+        android:scrollbarFadeDuration="0"
+        android:scrollbars="none" />
+
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="@color/backgroundcolor" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+  <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0" android:layout_above="@id/bottom_bar" android:layout_below="@id/layout_top">
+    <ListView android:id="@id/list" android:background="#fff1f1f1" android:visibility="gone" android:fadingEdge="none" android:layout_width="match_parent" android:layout_height="match_parent" android:listSelector="@drawable/list_selector" android:cacheColorHint="@android:color/transparent" android:divider="@drawable/list_divider" android:smoothScrollbar="true" />
+    <ProgressBar android:layout_gravity="center" android:id="@id/progress" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminateDrawable="@drawable/progressbar" style="?android:attr/progressBarStyleInverse" />
+  </FrameLayout>
+  <LinearLayout android:layout_gravity="top" android:orientation="horizontal" android:id="@id/layout_top" android:background="@drawable/title_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/title_margin">
+    <Button android:layout_gravity="center_vertical" android:id="@id/back" android:background="@drawable/title_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back" style="@style/comm_controls" />
+    <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="horizontal" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/title_3_info">
+      <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TextView android:layout_gravity="center" android:id="@id/top_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" android:layout_weight="1.0" style="@style/title_info" />
+      </LinearLayout>
+    </LinearLayout>
+    <Button android:layout_gravity="center_vertical" android:background="@drawable/title_login" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/comm_controls" />
+  </LinearLayout>
+  <RelativeLayout android:id="@id/bottom_bar" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:background="@drawable/pb_bottom_bar_bg">
+    <Button android:id="@id/post" android:layout_width="60dp" android:layout_height="40dp" android:layout_alignParentRight="true" android:layout_marginRight="10dp" android:layout_centerVertical="true" android:text="发送" android:background="@drawable/chat_send_btn" />
+    <EditText android:id="@id/post_body" style="@style/Theme.Apollo.TextEdit" android:layout_centerVertical="true" android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_toLeftOf="@id/post" android:background="@drawable/edit_post_body" />
+  </RelativeLayout>
+</RelativeLayout>

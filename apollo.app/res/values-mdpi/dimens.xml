@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="person_post_reply_ori_padding">10.0dip</dimen>
+    <dimen name="voice_play_bnt_text_size_0">18.0dip</dimen>
+    <dimen name="voice_play_bnt_text_size_1">14.0dip</dimen>
+    <dimen name="voice_play_bnt_width_0">92.0dip</dimen>
+    <dimen name="voice_play_bnt_height_0">38.0dip</dimen>
+    <dimen name="voice_play_bnt_width_1">75.0dip</dimen>
+    <dimen name="voice_play_bnt_height_1">32.0dip</dimen>
+    <dimen name="floating_fontSize_life">14.0sp</dimen>
+    <dimen name="floating_famous_icon_size">35.0dip</dimen>
+    <dimen name="forum_detail_footer_txt_size">14.0dip</dimen>
+    <dimen name="forum_detail_footer_left_margin_left">10.0dip</dimen>
+    <dimen name="forum_detail_footer_left_margin_right">5.0dip</dimen>
+    <dimen name="guide_page_forth_raido_height">405.0dip</dimen>
+</resources>

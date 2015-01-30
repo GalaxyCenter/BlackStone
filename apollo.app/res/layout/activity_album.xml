@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sqq.ScrollViewPull.widget.TryRefreshableView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@id/trymyRV" android:layout_width="fill_parent" android:layout_height="fill_parent" android:focusable="true" android:orientation="vertical">
+  <RelativeLayout android:id="@id/layout_top" style="@style/title_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true" android:background="@drawable/title_bg">
+    <TextView android:id="@id/top_title" style="@style/title_info" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:gravity="center" android:singleLine="true"  />
+    <Button android:id="@id/back" style="@style/comm_controls" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_centerHorizontal="true" android:layout_centerInParent="false" android:layout_centerVertical="true" android:layout_gravity="left|center" android:background="@drawable/title_back" android:gravity="center_vertical|center_horizontal" android:text="@string/back" />
+  </RelativeLayout>
+  <sqq.ScrollViewPull.widget.TryPullToRefreshScrollView android:id="@id/waterfall_scroll" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scrollbars="vertical">
+    <LinearLayout android:id="@id/waterfall_container" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@drawable/background" android:orientation="horizontal">
+    </LinearLayout>
+  </sqq.ScrollViewPull.widget.TryPullToRefreshScrollView>
+</sqq.ScrollViewPull.widget.TryRefreshableView>

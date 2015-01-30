@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="remind_entries">
+        <item>@string/reply</item>
+        <item>@string/mention_me</item>
+        <item>@string/private_message</item>
+    </array>
+    <string-array name="remind_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    
+    <array name="font_entries">
+        <item>@string/font_size_small</item>
+        <item>@string/font_size_mid</item>
+        <item>@string/font_size_big</item>
+    </array>
+    <string-array name="font_values">
+        <item>14</item>
+        <item>24</item>
+        <item>34</item>
+    </string-array>
+        
+    <array name="dialog_msg_more_menu_item">
+        <item>@string/msg_sys</item>
+        <item>@string/msg_user</item>
+    </array>
+    
+    <array name="dialog_post_more_menu_item">
+        <item>@string/mark</item>
+        <item>@string/add_bookmark</item>
+        <item>@string/share</item>
+        <item>@string/auto_post</item>
+    </array>
+    
+    <array name="dialog_thread_normal_more_menu_item">
+        <item>@string/thread_sort_last_reply</item>
+        <item>@string/thread_sort_last_post</item>
+        <item>@string/thread_sort_value</item>
+        <item>@string/thread_sort_views</item>
+    </array>
+    
+    <array name="dialog_thread_bookmark_more_menu_item">
+        <item>@string/thread_post</item>
+        <item>@string/thread_reply</item>
+    </array>
+    
+    <array name="person_menu_item">
+        <item>@string/my_posts</item>
+        <item>@string/my_friends</item>
+        <item>@string/my_bookmark</item>
+        <item>@string/my_gallery</item>
+    </array>
+    
+    <array name="user_menu_item">
+        <item>@string/my_posts</item>
+    </array>
+    
+    <array name="select_gallery">
+        <item>@string/camera</item>
+        <item>@string/local_gallery</item>
+        <item>@string/remote_gallery</item>
+    </array>
+    
+</resources>

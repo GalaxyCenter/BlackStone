@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<apollo.widget.AnimationTabHost xmlns:android="http://schemas.android.com/apk/res/android" android:id="@android:id/tabhost" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<LinearLayout android:orientation="vertical" android:background="@color/backgroundcolor" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <FrameLayout android:id="@android:id/tabcontent" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+        <TabWidget android:id="@android:id/tabs" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="0.0" />
+        <FrameLayout android:layout_gravity="bottom" android:background="@drawable/maintab_toolbar_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="-4.0px">
+            <RadioGroup android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/main_radio" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <RadioButton android:id="@id/radio_home" android:text="@string/home" android:drawableTop="@drawable/tabs_home" style="@style/main_tab_bottom" />
+                <RadioButton android:id="@id/radio_forum" android:text="@string/forum" android:drawableTop="@drawable/tabs_home" style="@style/main_tab_bottom" />
+                <RadioButton android:id="@id/radio_message" android:text="@string/message" android:drawableTop="@drawable/tabs_message" style="@style/main_tab_bottom" />
+                <RadioButton android:id="@id/radio_person_info" android:text="@string/person_info" android:drawableTop="@drawable/tabs_person" style="@style/main_tab_bottom" />
+                <RadioButton android:id="@id/radio_more" android:text="@string/more" android:drawableTop="@drawable/tabs_more" style="@style/main_tab_bottom" />
+            </RadioGroup>
+            <TextView android:textSize="13.0sp" android:textColor="#ffffffff" android:gravity="center" android:layout_gravity="top|left|center" android:id="@id/message_mention" android:background="@drawable/message_tips" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="-5.0dip" android:text="" />
+            <TextView android:textSize="13.0sp" android:textColor="#ffffffff" android:gravity="center" android:layout_gravity="top|left|center" android:id="@id/message_person" android:background="@drawable/message_tips" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="-5.0dip" android:text="" />
+        </FrameLayout>
+    </LinearLayout>
+</apollo.widget.AnimationTabHost>

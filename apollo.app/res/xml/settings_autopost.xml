@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    
+  <PreferenceCategory android:title="@string/aotupost_settings_auto_rule" android:key="account_category" android:layout="@layout/prefs_category_widget">
+      
+    <Preference android:persistent="false" android:title="@string/autopost_start_time" android:key="start_time" android:layout="@layout/perfs_item" />
+    
+    <Preference android:persistent="false" android:title="@string/autopost_end_time" android:key="end_time" android:layout="@layout/perfs_item" />
+    
+	<CheckBoxPreference android:persistent="false" android:title="@string/autopost_floor_enable" android:key="floor_enable" android:layout="@layout/perfs_item" />
+    
+	<EditTextPreference android:dependency="floor_enable" android:persistent="false" android:title="@string/autopost_floor" android:key="floor_num" android:layout="@layout/perfs_item" />
+	
+  </PreferenceCategory>
+  
+  <PreferenceCategory android:title="@string/aotupost_settings_user_rule" android:key="account_category" android:layout="@layout/prefs_category_widget">
+      <Preference android:title="@string/autopost_accounts" android:key="accounts" android:layout="@layout/perfs_item" />
+      <EditTextPreference android:persistent="false" android:title="@string/autopost_postbody" android:key="post_body" android:layout="@layout/perfs_item" />
+  </PreferenceCategory>
+  
+</PreferenceScreen>

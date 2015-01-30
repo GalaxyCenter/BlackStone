@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="#fff7f7f7" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/layout_top">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <TextView android:textSize="14.0sp" android:textColor="#ffff0000" android:gravity="center_vertical" android:id="@id/text_error" android:paddingLeft="8.0dip" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="25.0dip" android:singleLine="true" android:drawableLeft="@drawable/login_error" />
+                <TextView android:textSize="14.0sp" android:textColor="#ff355dbf" android:gravity="center_vertical" android:id="@id/text_info" android:paddingLeft="8.0dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="25.0dip" android:singleLine="true" />
+            </FrameLayout>
+            <TableLayout android:paddingLeft="8.0dip" android:paddingRight="8.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <TableRow android:id="@id/layout_account"  android:background="@drawable/login_input_top">
+                    <FrameLayout android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <TextView android:textSize="16.0sp" android:textColor="@android:color/black" android:layout_gravity="center_vertical" android:id="@id/text_title_account" android:paddingLeft="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/account_account" />
+                        <TextView android:textSize="16.0sp" android:textColor="@android:color/black" android:layout_gravity="center_vertical" android:id="@id/text_title_vcode" android:paddingLeft="15.0dip" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title_vcode" />
+                    </FrameLayout>
+                    <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="4.0dip" android:layout_weight="1.0">
+                        <EditText android:textSize="14.0sp" android:textColor="#ff3b3b3b" android:id="@id/login_edit_account" android:background="@null" android:padding="5.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:hint="@string/account_hint_normal" android:singleLine="true" android:layout_weight="1.0" />
+                        <Button android:id="@id/button_account_del" android:background="@drawable/home_search_quit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:onClick="onClick" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow android:id="@id/layout_password" android:background="@drawable/login_input_under">
+                    <TextView android:textSize="16.0sp" android:textColor="@android:color/black" android:layout_gravity="center_vertical" android:id="@id/text_title_password" android:paddingLeft="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/account_password" />
+                    <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="4.0dip" android:layout_weight="1.0">
+                        <EditText android:textSize="14.0sp" android:textColor="#ff3b3b3b" android:id="@id/login_edit_password" android:background="@null" android:padding="5.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:hint="@string/account_password" android:singleLine="true" android:layout_weight="1.0" android:inputType="textPassword" android:imeOptions="actionSend" />
+                        <Button android:id="@id/button_pass_del" android:background="@drawable/home_search_quit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:onClick="onClick" />
+                    </LinearLayout>
+                </TableRow>
+                <TableRow android:id="@id/layout_vcode" android:background="@drawable/login_input_under" android:visibility="gone">
+                    <TextView android:textSize="16.0sp" android:textColor="@android:color/black" android:layout_gravity="center_vertical" android:id="@id/text_title_vcode" android:paddingLeft="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title_vcode" />
+                    <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:baselineAligned="false" android:layout_weight="1.0">
+                        <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="4.0dip" android:layout_weight="1.0">
+                            <EditText android:textSize="14.0sp" android:textColor="#ff3b3b3b" android:id="@id/edit_vcode" android:background="@null" android:padding="5.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:singleLine="true" android:layout_weight="1.0" android:inputType="text" android:imeOptions="actionDone" />
+                            <Button android:id="@id/button_vcode_del" android:background="@drawable/home_search_quit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:onClick="onClick" />
+                        </LinearLayout>
+                        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                            <ImageView android:id="@id/image_vcode1" android:background="@drawable/background" android:clickable="true" android:layout_width="100.0dip" android:layout_height="40.0dip" android:scaleType="fitCenter" android:onClick="onClick" />
+                            <ImageView android:id="@id/image_vcode2" android:background="@drawable/background" android:visibility="gone" android:clickable="true" android:layout_width="100.0dip" android:layout_height="40.0dip" android:scaleType="fitCenter" android:onClick="onClick" />
+                            <ProgressBar android:layout_gravity="center" android:id="@id/image_progress" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminateDrawable="@drawable/progressbar" style="?android:attr/progressBarStyleSmall" />
+                        </FrameLayout>
+                        <Button android:textColor="#ff3289cb" android:id="@id/button_vcode_refresh" android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/vcode_refresh" android:onClick="onClick" />
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+            <LinearLayout android:gravity="center" android:layout_gravity="center_horizontal" android:id="@id/layout_login" android:background="@drawable/login_bg" android:clickable="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="8.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="8.0dip">
+                <ProgressBar android:layout_gravity="center" android:id="@id/progress_login" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminateDrawable="@drawable/login_progressbar" style="?android:attr/progressBarStyleSmall" />
+                <TextView android:enabled="false" android:textSize="16.0sp" android:textColor="#ffffffff" android:id="@id/text_login" android:padding="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/account_login" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout android:orientation="horizontal" android:id="@id/layout_top" android:background="@drawable/title_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true" style="@style/title_margin">
+        <Button android:layout_gravity="center_vertical" android:id="@id/back" android:background="@drawable/title_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back" style="@style/comm_controls" />
+        <TextView android:gravity="center" android:layout_gravity="center" android:id="@id/top_title" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/title_login" android:singleLine="true" android:layout_weight="1.0" style="@style/title_info" />
+        <Button android:layout_gravity="center_vertical" android:id="@id/login_bt_reg" android:background="@drawable/title_comm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/account_regedit" style="@style/comm_controls" />
+    </LinearLayout>
+</RelativeLayout>
