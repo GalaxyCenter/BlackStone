@@ -2,7 +2,7 @@ package apollo.data.dalfactory;
 
 import java.lang.reflect.Constructor;
 
-import apollo.data.idal.IAutoPostConfigDataProvider;
+import apollo.data.idal.IAutoPostDataProvider;
 import apollo.data.idal.IBookmarkDataProvider;
 import apollo.data.idal.IConfigDataProvider;
 import apollo.data.idal.IGalleryDataProvider;
@@ -36,8 +36,8 @@ public class DataAccess {
         return (IConfigDataProvider)createProvider("apollo.data.sqlitedal", "ConfigDataProvider");
     }
     
-    public static IAutoPostConfigDataProvider createLocalAutoPostConfigDataProvider() {
-        return (IAutoPostConfigDataProvider)createProvider("apollo.data.sqlitedal", "AutoPostConfigDataProvider");
+    public static IAutoPostDataProvider createLocalAutoPostDataProvider() {
+        return (IAutoPostDataProvider)createProvider("apollo.data.sqlitedal", "AutoPostDataProvider");
     }
     
     public static IUserDataProvider createLocalUserDataProvider() {

@@ -59,7 +59,6 @@ public class PostDataProvider implements IPostDataProvider {
 		datas = new DataSet<Post>();
 		datas.setObjects(posts);
 		
-		db = DatabaseHelper.getReadDatabase();
 		columns = new String[] {Post.Columns.ID, Post.Columns.SECTION_ID, Post.Columns.THREAD_ID, Post.Columns.USER_ID, Post.Columns.SUBJECT, Post.Columns.BODY, Post.Columns.POST_DATE};
 		
 		argsList = new ArrayList<String>();
@@ -87,6 +86,8 @@ public class PostDataProvider implements IPostDataProvider {
 			orderBy = Post.Columns.ID + " " + sortOrder;
 		
 		limit = (pageIndex - 1) * pageSize + "," + pageSize;
+		
+		db = DatabaseHelper.getReadDatabase();
 		cursor = db.query(Constants.APOLLO_DATA_TABLE_POST, columns, clause, args, null, null, orderBy, limit);
 		if (cursor != null) {
 			for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {

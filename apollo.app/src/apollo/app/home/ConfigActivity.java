@@ -16,12 +16,14 @@ import android.preference.PreferenceScreen;
 import apollo.app.AccountActivity;
 import apollo.app.LoginActivity;
 import apollo.app.R;
+import apollo.app.ThreadActivity;
 import apollo.bll.Configs;
 import apollo.core.ApolloApplication;
 import apollo.core.RequestResponseCode;
 import apollo.data.model.Config;
 import apollo.data.model.Constants;
 import apollo.enums.AccountViewMode;
+import apollo.enums.ThreadViewType;
 import apollo.preference.MultiSelectListPreference;
 
 public class ConfigActivity extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
@@ -38,6 +40,7 @@ public class ConfigActivity extends PreferenceActivity implements Preference.OnP
 	
 
 	private PreferenceScreen mAccountManage;
+	private PreferenceScreen mAutoPostManage;
 	private MultiSelectListPreference mRemindMode = null;
 	private ListPreference mFontSize = null;
 	private CheckBoxPreference mRemindEnable = null;
@@ -80,6 +83,7 @@ public class ConfigActivity extends PreferenceActivity implements Preference.OnP
 		mVibrateEnable = (CheckBoxPreference) findPreference(Constants.Settings.KEY_VIBRATE);
 		mClearCache = (Preference) findPreference(Constants.Settings.KEY_CLEAR_CACHE);
 		mAccountManage = (PreferenceScreen)findPreference(Constants.Settings.KEY_MANAGE_ACCOUNT);
+		mAutoPostManage = (PreferenceScreen)findPreference(Constants.Settings.KEY_MANAGE_AUTOPOST);
 		
 		mAccountManage.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			@Override
@@ -91,6 +95,15 @@ public class ConfigActivity extends PreferenceActivity implements Preference.OnP
  
 				return false;
 			}
+		});
+		
+		mAutoPostManage.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				ThreadActivity.startActivity(ConfigActivity.this, ThreadViewType.AUTOPOST);
+				return false;
+			}
+			
 		});
 		
 		mRemindMode.setOnPreferenceChangeListener(this);

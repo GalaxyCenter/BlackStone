@@ -51,6 +51,7 @@
     <string name="my_bookmark">我的书签</string>
     <string name="my_gallery">我的相册</string>
     <string name="my_friends">我的好友</string>
+    <string name="my_autopost">我的抢楼</string>
     <string name="post_message">写信</string>
     <string name="skip_floor">跳楼</string>
     <string name="back">返回</string>
@@ -99,6 +100,7 @@
     <string name="account_male">男</string>
     <string name="account_female">女</string>
     <string name="account_manage">帐号管理</string>
+    <string name="autopost_manage">抢楼管理</string>
     <string name="account_protocol">协议条款</string>
     <string name="title_login">登录天涯帐号</string>
     <string name="account_regedit">注册</string>

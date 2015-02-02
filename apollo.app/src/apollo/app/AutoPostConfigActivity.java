@@ -21,10 +21,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import apollo.app.home.MainTabActivity;
-import apollo.bll.AutoPostConfigs;
+import apollo.bll.AutoPosts;
 import apollo.core.ApolloApplication;
 import apollo.core.RequestResponseCode;
-import apollo.data.model.AutoPostConfig;
+import apollo.data.model.AutoPost;
 import apollo.data.model.Constants;
 import apollo.data.model.Thread;
 import apollo.data.model.User;
@@ -48,7 +48,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 	private DateTimePicker  mEndDateTimePicker = null;
 	private Button mBack;
 	
-	private AutoPostConfig mProfile = null;
+	private AutoPost mProfile = null;
 	private boolean mProfileChanged = false;
 	private Thread mThread = null;
 	
@@ -67,10 +67,10 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 	
 		intent = getIntent();
 		mThread = intent.getParcelableExtra("thread");
-		mProfile = AutoPostConfigs.getConfig(mThread);
+		mProfile = AutoPosts.getAutoPost(mThread);
 		mProfileChanged = true;
 		if (mProfile == null) {
-			mProfile = new AutoPostConfig();
+			mProfile = new AutoPost();
 			mProfile.thread = mThread;
 			mProfileChanged = false;
 		}
@@ -201,7 +201,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 		return true;
 	}
 	
-	private void updatePreference(AutoPostConfig profile) {
+	private void updatePreference(AutoPost profile) {
 		if (mProfileChanged == false)
 			return;
 		
@@ -247,6 +247,6 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 	}
 	
 	private void doSaveAction() {
-		mProfile.id = AutoPostConfigs.save(mProfile);
+		mProfile.id = AutoPosts.save(mProfile);
 	}
 }

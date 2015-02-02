@@ -5,12 +5,6 @@ import java.util.List;
 
 import org.miscwidgets.widget.Panel;
 
-
-
-
-
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -25,12 +21,14 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.WindowManager.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -39,16 +37,15 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
-import apollo.app.R;
 import apollo.app.home.MainTabActivity;
 import apollo.app.home.PersonInfoActivity;
+import apollo.bll.AutoPosts;
 import apollo.bll.Bookmarks;
 import apollo.bll.Sections;
 import apollo.bll.Threads;
 import apollo.core.ApolloApplication;
 import apollo.core.RequestResponseCode;
+import apollo.data.model.AutoPost;
 import apollo.data.model.Constants;
 import apollo.data.model.Section;
 import apollo.data.model.Thread;
@@ -58,10 +55,10 @@ import apollo.enums.SectionType;
 import apollo.enums.SortBy;
 import apollo.enums.ThreadViewType;
 import apollo.util.AsyncImageLoader;
-import apollo.util.ImageUtil;
-import apollo.util.ResUtil;
 import apollo.util.AsyncImageLoader.OnImageLoaderListener;
 import apollo.util.DataSet;
+import apollo.util.ImageUtil;
+import apollo.util.ResUtil;
 import apollo.widget.DialogMoreAdapter;
 
 public class ThreadActivity extends BaseActivity implements OnItemClickListener,OnItemLongClickListener {
@@ -177,6 +174,15 @@ public class ThreadActivity extends BaseActivity implements OnItemClickListener,
 					threads = Threads.getThreads(mUser, SectionType.CITY, PostMode.REPLY, pageIndex, pageSize);
 					ThreadActivity.this.mThreads.addAll(threads);
 				}				
+			} else if (ThreadViewType.AUTOPOST.equals(viewType)) {
+				DataSet<AutoPost> datas = null;
+				
+				threads = new ArrayList<Thread>();
+				datas = AutoPosts.getAutoPosts(pageIndex, pageSize);
+				for(AutoPost post:datas.getObjects()) {
+					threads.add(post.thread);
+				}
+				ThreadActivity.this.mThreads.addAll(threads);
 			}
 			return null;
 		}
@@ -253,36 +259,45 @@ public class ThreadActivity extends BaseActivity implements OnItemClickListener,
 			}
 			
 			thread = this.threads.get(position);
-
-			viewHolder.thread_author.setText(thread.getAuthor().getName());
-			viewHolder.thread_author.setTag(thread.getAuthor());
-			viewHolder.thread_subject.setText(thread.getSubject());
-			viewHolder.thread_postdate.setText(thread.getUpdateDate().toString("yyyy-MM-dd HH:mm"));
-			viewHolder.thread_replies.setText(Integer.toString(thread.getReplies()));
-			viewHolder.thread_views.setText(Integer.toString(thread.getViews()));
 			
-			icon_url = "http://tx.tianyaui.com/logo/small/" + thread.getAuthor().getUserId();
-			viewHolder.thread_usericon.setTag(thread.getAuthor());
-			Bitmap bmp = mAsyncImageLoader.loadImage(icon_url, viewHolder.thread_usericon, new OnImageLoaderListener<ImageView>() {
-                @Override
-                public void imageLoaded(Bitmap bmp, ImageView view, String url) {
-                	String icon_url = "http://tx.tianyaui.com/logo/small/" + ((User)view.getTag()).getUserId();
-                	
-                	if (url.equals(icon_url)) {
-	                	bmp = ImageUtil.toRoundCorner(bmp, 10);
-	                	view.setImageBitmap(bmp);
-                	}
-                }
-            });
-			if (bmp != null) 
-				viewHolder.thread_usericon.setImageDrawable(new BitmapDrawable(bmp));
+			if (ThreadViewType.AUTOPOST.equals(mThreadViewType)) {
+				viewHolder.thread_subject.setText(thread.getSubject());
+				((View)viewHolder.thread_usericon.getParent()).setVisibility(View.GONE);
+				((View)viewHolder.thread_views.getParent()).setVisibility(View.GONE);
+				viewHolder.thread_user_approved.setVisibility(View.GONE);
+				viewHolder.thread_author.setVisibility(View.GONE);
+			} else {
+				viewHolder.thread_subject.setText(thread.getSubject());
+				viewHolder.thread_author.setText(thread.getAuthor().getName());
+				viewHolder.thread_author.setTag(thread.getAuthor());
+				viewHolder.thread_postdate.setText(thread.getUpdateDate().toString("yyyy-MM-dd HH:mm"));
+				viewHolder.thread_replies.setText(Integer.toString(thread.getReplies()));
+				viewHolder.thread_views.setText(Integer.toString(thread.getViews()));
+				
+				icon_url = "http://tx.tianyaui.com/logo/small/" + thread.getAuthor().getUserId();
+				viewHolder.thread_usericon.setTag(thread.getAuthor());
+				Bitmap bmp = mAsyncImageLoader.loadImage(icon_url, viewHolder.thread_usericon, new OnImageLoaderListener<ImageView>() {
+	                @Override
+	                public void imageLoaded(Bitmap bmp, ImageView view, String url) {
+	                	String icon_url = "http://tx.tianyaui.com/logo/small/" + ((User)view.getTag()).getUserId();
+	                	
+	                	if (url.equals(icon_url)) {
+		                	bmp = ImageUtil.toRoundCorner(bmp, 10);
+		                	view.setImageBitmap(bmp);
+	                	}
+	                }
+	            });
+				if (bmp != null) 
+					viewHolder.thread_usericon.setImageDrawable(new BitmapDrawable(bmp));
+				
+				if(thread.getAuthor().isApproved()){
+					viewHolder.thread_user_approved.setVisibility(View.GONE);//非vip隐藏vip标志
+				}
+				if(thread.hasImage()){
+					viewHolder.thread_hasimage.setImageResource(R.drawable.hasimage);
+				}
+			}
 			
-			if(thread.getAuthor().isApproved()){
-				viewHolder.thread_user_approved.setVisibility(View.GONE);//非vip隐藏vip标志
-			}
-			if(thread.hasImage()){
-				viewHolder.thread_hasimage.setImageResource(R.drawable.hasimage);
-			}
 			return convertView;
 		}
 		
@@ -312,6 +327,10 @@ public class ThreadActivity extends BaseActivity implements OnItemClickListener,
 		intent = new Intent(activity, ThreadActivity.class);
 		intent.putExtras(bundle);
 		activity.startActivity(intent);
+	}
+	
+	public static void startActivity(Activity activity, ThreadViewType viewType) {
+		startActivity(activity, null, viewType, null);
 	}
 	
 	public static void startActivity(Activity activity, User user, ThreadViewType viewType) {
@@ -366,6 +385,8 @@ public class ThreadActivity extends BaseActivity implements OnItemClickListener,
 			String topTitle = null;
 			topTitle = getResources().getStringArray(R.array.dialog_thread_bookmark_more_menu_item)[0];
 			mTopTitle.setText(topTitle);
+		} else if (ThreadViewType.AUTOPOST.equals(mThreadViewType)) {
+			mTopTitle.setText(R.string.my_autopost);
 		}
 	}
 
@@ -384,8 +405,12 @@ public class ThreadActivity extends BaseActivity implements OnItemClickListener,
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Thread thread = null;
 		
-		thread = mThreads.get(position);		
-		PostActivity.startActivity(this, thread);
+		thread = mThreads.get(position);
+		
+		if (ThreadViewType.AUTOPOST.equals(mThreadViewType)) 
+			AutoPostConfigActivity.startActivity(this, thread);
+		else
+			PostActivity.startActivity(this, thread);
 	}
 	
 	public void closeActivity() {

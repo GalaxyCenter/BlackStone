@@ -6,7 +6,7 @@ import java.util.List;
 import android.provider.BaseColumns;
 import apollo.util.DateTime;
 
-public class AutoPostConfig {
+public class AutoPost {
 
 	public static class Columns implements BaseColumns {
 		public static final String ID = "_id";

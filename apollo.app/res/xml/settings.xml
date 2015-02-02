@@ -3,6 +3,7 @@
     
 	<PreferenceCategory android:title="@string/account" android:key="account_category" android:layout="@layout/prefs_category_widget">
 	   <PreferenceScreen android:title="@string/account_manage"  android:key="account_manage" android:layout="@layout/perfs_item" />
+	   <PreferenceScreen android:title="@string/autopost_manage"  android:key="autopost_manage" android:layout="@layout/perfs_item" />
 	</PreferenceCategory>
 	
 	<PreferenceCategory android:title="@string/msg_remind" android:key="msg_category" android:layout="@layout/prefs_category_widget">

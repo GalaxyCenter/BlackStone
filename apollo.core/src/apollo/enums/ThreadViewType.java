@@ -6,6 +6,7 @@ public class ThreadViewType {
 	public static ThreadViewType BOOKMARK = new ThreadViewType(1);
 	public static ThreadViewType USER = new ThreadViewType(2);
 	public static ThreadViewType SEARCH = new ThreadViewType(3);
+	public static ThreadViewType AUTOPOST = new ThreadViewType(4);
 	
 	private int mValue;
 	public ThreadViewType(int value) {

@@ -14,7 +14,7 @@ public class Constants {
 	public static final String APOLLO_DATA_TABLE_POST = "posts";
 	public static final String APOLLO_DATA_TABLE_BOOKMARK = "book_marks";
 	public static final String APOLLO_DATA_TABLE_CONFIG = "configs";
-	public static final String APOLLO_DATA_TABLE_AUTOPOST_CONFIG = "autopost_configs";
+	public static final String APOLLO_DATA_TABLE_AUTOPOST = "autopost_configs";
 	
 	public static String APOLLO_FOLDER_TEMP = null;
 	public static String APOLLO_CAMERA_TEMP = null;
@@ -31,6 +31,7 @@ public class Constants {
 		public static final String BLANK_SUMMARY = " ";
 		public static String KEY_REMIND_MODE = "remind_mode";
 		public static String KEY_MANAGE_ACCOUNT = "account_manage";
+		public static String KEY_MANAGE_AUTOPOST = "autopost_manage";
 		
 		public static String KEY_REMIND_ENABLE = "remind_enable";
 		public static String KEY_SOUND = "sound_enable";
