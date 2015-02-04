@@ -1,19 +1,16 @@
 package apollo.core;
 
-import java.util.List;
-
 import android.app.Application;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.Log;
-import apollo.bll.Sections;
 import apollo.bll.Users;
 import apollo.data.model.Constants;
-import apollo.data.model.Section;
 import apollo.data.model.User;
 import apollo.exceptions.ApplicationException;
-import apollo.exceptions.CoreException;
+import apollo.service.AutoPostService;
 
 public class ApolloApplication extends Application {
 
@@ -82,6 +79,8 @@ public class ApolloApplication extends Application {
 		
 		initVersion();
 		initAccount();
+		
+		startAutoPostService();
 	}
 	
 	public boolean isFirstUse() {
@@ -97,5 +96,13 @@ public class ApolloApplication extends Application {
 		SharedPreferences.Editor editor = getSharedPreferences(Constants.SETTINGFILE, 0).edit();
 		editor.putString(LAST_VERSION, Constants.VERSION);
 		editor.commit();
+	}
+
+	public void startAutoPostService() {
+		startService(new Intent(this, AutoPostService.class));
+	}
+
+	public void stopAutoPostService() {
+		stopService(new Intent(this, AutoPostService.class));
 	}
 }
