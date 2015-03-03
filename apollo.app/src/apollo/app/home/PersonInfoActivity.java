@@ -281,8 +281,10 @@ public class PersonInfoActivity extends BaseActivity {
 		mListItemAdapter.notifyDataSetChanged();
 	}
 	
-	private void refresh() {		
-		mPersonTask = new PersonAsyncTask();
-		mPersonTask.execute(mUser);
+	private void refresh() {
+		if (mUser != null) {
+			mPersonTask = new PersonAsyncTask();
+			mPersonTask.execute(mUser);
+		}
 	}
 }
