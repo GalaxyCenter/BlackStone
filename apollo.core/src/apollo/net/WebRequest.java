@@ -279,7 +279,7 @@ public class WebRequest {
 		if (resp.contentCharset == null || "".equals(resp.contentCharset))
 			resp.contentCharset = this.responseCharset;
 
-		if (resp.contentEncoding == null || "gzip".equals(resp.contentEncoding))
+		if ("gzip".equals(resp.contentEncoding))
 			in = new GZIPInputStream(conn.getInputStream());
 		else
 			in = conn.getInputStream();
