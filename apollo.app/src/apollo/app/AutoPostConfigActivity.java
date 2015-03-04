@@ -142,6 +142,8 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 		
 		if (resultCode == RESULT_OK ) {
 			if (requestCode == RequestResponseCode.REQUEST_USER_SELECTED) {
+				
+				// 当data为空时即选中所有用户
 				if (data == null) {
 					mAccounts.setSummary(R.string.autopost_all_user);
 				} else {
@@ -209,6 +211,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 		if (profile.floorEnable) {
 			mFloorNum.setSummary(profile.floorNum + getString(R.string.floor));
 		}
+		
 		if (profile.accounts == null) 
 			mAccounts.setSummary(R.string.autopost_selected_user);
 		else

@@ -1,5 +1,6 @@
 package apollo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -7,6 +8,7 @@ import java.util.TimerTask;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 import apollo.bll.AutoPosts;
 import apollo.bll.Posts;
 import apollo.bll.Users;
@@ -30,7 +32,11 @@ public class AutoPostService extends Service {
 			if (curIdx >= post.accounts.size())
 				curIdx = 0;
 			
-			createPost(post, curIdx);
+			try {
+				createPost(post, curIdx);
+			} catch (Exception ex) {
+				Log.e(getClass().getName(), "createPost exception");
+			}
 			curIdx++;
 		}
 	}
@@ -127,10 +133,19 @@ public class AutoPostService extends Service {
 				datas = AutoPosts.getAutoPosts(1, 3);
 				posts = datas.getObjects();
 				for(AutoPost ap:posts) {
-					for(int i=0; i<ap.accounts.size(); i++) {
-						user = ap.accounts.get(i);
-						user = Users.getUser(user.getUserId());
-						ap.accounts.set(i, user);
+					
+					if (ap.accounts == null) {
+						// ap.accounts为空既是全选所有用户
+						DataSet<User> user_datas = Users.getUsers(1, Integer.MAX_VALUE);
+						ap.accounts = new ArrayList<User>();
+						ap.accounts.addAll(user_datas.getObjects());
+					} else {
+						// 处理选中的特定用户
+						for(int i=0; i<ap.accounts.size(); i++) {
+							user = ap.accounts.get(i);
+							user = Users.getUser(user.getUserId());
+							ap.accounts.set(i, user);
+						}
 					}
 
 					if (ap.floorEnable) {

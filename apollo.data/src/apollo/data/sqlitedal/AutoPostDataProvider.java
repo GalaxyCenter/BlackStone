@@ -152,7 +152,7 @@ public class AutoPostDataProvider implements IAutoPostDataProvider {
 		for(int i=0; i<posts.size(); i++) {
 			accounts = post_accounts.get(i);
 			post = posts.get(i);
-			if (TextUtils.isEmpty(accounts) == false) {
+			if ("".equals(accounts) == false) {
 				String[] temp = accounts.split(";");
 				User u = null;
 				post.accounts = new ArrayList<User>();
@@ -177,12 +177,14 @@ public class AutoPostDataProvider implements IAutoPostDataProvider {
 		String[] temp = null;
 		
 		if (config.accounts != null) {
+			// 处理选中的特定用户
 			temp = new String[config.accounts.size()];
 			for(int i=0; i<temp.length; i++) {
 				temp[i] = config.accounts.get(i).getName();
 			}
 			accounts = StringUtil.join(temp, ";");
 		} else {
+			// 当全选用户过多时会造成数据字段过长，所以当accounts为“”时既是选中所有用户 
 			accounts = "";
 		}
 		
@@ -222,6 +224,7 @@ public class AutoPostDataProvider implements IAutoPostDataProvider {
 		} else {
 			accounts = "";
 		}
+		
 		if (config.floorEnable == false)
 			config.floorNum = 0;
 		
