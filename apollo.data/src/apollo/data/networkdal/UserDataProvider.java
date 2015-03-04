@@ -133,7 +133,7 @@ public class UserDataProvider extends DataProvider implements IUserDataProvider 
 		url = "http://passport.tianya.cn/login";
 		try {
 			_resp = _req.create(url, params, propertys);
-			body = new String(_resp.getContent(), _resp.getContentEncoding());
+			body = new String(_resp.getContent(), _resp.getContentCharset());
 		} catch (Exception ex) {
 			throw new SystemException(ex.getMessage());
 		}
@@ -363,7 +363,7 @@ public class UserDataProvider extends DataProvider implements IUserDataProvider 
 		
 		try {
 			_resp = _req.create(url, null, propertys);
-			body = new String(_resp.getContent(), _resp.getContentEncoding());
+			body = new String(_resp.getContent(), _resp.getContentCharset());
 		} catch (IOException ex) {
 			throw new SystemException(ex.getMessage());
 		}

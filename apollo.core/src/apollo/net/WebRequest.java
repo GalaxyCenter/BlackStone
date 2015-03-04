@@ -9,7 +9,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Map;
+import java.util.zip.GZIPInputStream;
 
+import android.text.TextUtils;
 import apollo.util.Encoding;
 import apollo.util.FileUtil;
 
@@ -259,8 +261,9 @@ public class WebRequest {
 		resp.code = conn.getResponseCode();
 		resp.urlString = conn.getURL().toString();
 		resp.message = conn.getResponseMessage();
-		resp.contentType = conn.getContentType();
 		resp.method = conn.getRequestMethod();
+		resp.contentType = conn.getContentType();
+		resp.contentEncoding = conn.getContentEncoding();
 		resp.connectTimeout = conn.getConnectTimeout();
 		resp.readTimeout = conn.getReadTimeout();
 		resp.m_conn = conn;
@@ -269,13 +272,20 @@ public class WebRequest {
 			int char_pos = resp.contentType.indexOf("charset=");
 			if (char_pos > 0) {
 				int end_pos = resp.contentType.length();
-				resp.contentEncoding = resp.contentType.substring(char_pos + 8,
+				resp.contentCharset = resp.contentType.substring(char_pos + 8,
 						end_pos);
 			}
 		}
-		if (resp.contentEncoding == null)
-			resp.contentEncoding = this.responseCharset;
 		
+		if (TextUtils.isEmpty(resp.contentCharset))
+			resp.contentCharset = this.responseCharset;
+		
+		if ("gzip".equals(resp.contentEncoding)) {
+			in = new GZIPInputStream(conn.getInputStream());  
+		} else {
+			in = conn.getInputStream();
+		}
+				
 		try {
 			in = conn.getInputStream();
 			baos = new ByteArrayOutputStream();
