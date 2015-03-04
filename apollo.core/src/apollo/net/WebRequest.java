@@ -11,7 +11,6 @@ import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
-import android.text.TextUtils;
 import apollo.util.Encoding;
 import apollo.util.FileUtil;
 
@@ -277,17 +276,15 @@ public class WebRequest {
 			}
 		}
 		
-		if (TextUtils.isEmpty(resp.contentCharset))
+		if ("".equals(resp.contentCharset))
 			resp.contentCharset = this.responseCharset;
-		
-		if ("gzip".equals(resp.contentEncoding)) {
-			in = new GZIPInputStream(conn.getInputStream());  
-		} else {
+
+		if ("gzip".equals(resp.contentEncoding))
+			in = new GZIPInputStream(conn.getInputStream());
+		else
 			in = conn.getInputStream();
-		}
 				
 		try {
-			in = conn.getInputStream();
 			baos = new ByteArrayOutputStream();
 			bytes = new byte[4096];
 			int len = 0;
