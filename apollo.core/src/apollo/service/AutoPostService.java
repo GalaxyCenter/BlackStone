@@ -37,21 +37,22 @@ public class AutoPostService extends Service {
 			} catch (Exception ex) {
 				Log.e(getClass().getName(), "createPost exception");
 			}
+			Log.i("info", "info");
 			curIdx++;
 		}
 	}
 	
 	class AutoPostThread extends Thread {
 		
-		public AutoPost post = null;
-		private int curIdx = 0;
+		AutoPost post = null;
+		int curIdx = 0;
+		boolean exit = false;
 		
 		@Override
 		public void run() {
 			int sleep_time = 10000;
 			int cur_replys = 0;
 			int diff = 0;
-			boolean exit = false;
 			
 			if (post.accounts.size() == 0)
 				exit = true;
@@ -119,17 +120,30 @@ public class AutoPostService extends Service {
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		new Thread(new Runnable() {
+		TimerTask daemon_task = null;
+		Timer daemon_timer = null;
+		final List<AutoPostThread> autopost_threads = new ArrayList<AutoPostThread>();
+		final List<Timer> autopost_timers = new ArrayList<Timer>();
+		
+		daemon_task = new TimerTask(){
 			@Override
 			public void run() {
 				DataSet<AutoPost> datas = null;
 				List<AutoPost> posts = null;
-				User user = null;
-				AutoPostThread thread = null;
-				AutoPostTimerTask task = null;
-				Timer timer = null;
-				long period = 0;
+				User user = null;				
 				
+				// 清理过时的任务
+				for(AutoPostThread apt:autopost_threads) {
+					apt.exit = true;
+				}
+				autopost_threads.clear();
+				
+				for(Timer t:autopost_timers) {
+					t.cancel();
+				}
+				autopost_timers.clear();
+				
+				// 重新处理新的任务
 				datas = AutoPosts.getAutoPosts(1, 3);
 				posts = datas.getObjects();
 				for(AutoPost ap:posts) {
@@ -149,21 +163,33 @@ public class AutoPostService extends Service {
 					}
 
 					if (ap.floorEnable) {
+						AutoPostThread thread = null;
 						thread = new AutoPostThread();
 						thread.post = ap;
 						thread.start();
+						
+						autopost_threads.add(thread);
 					} else {
-						task = new AutoPostTimerTask();
-						task.post = ap;
-						timer = new Timer(true);
+						AutoPostTimerTask autopost_task = null;
+						Timer autopost_timer = null;
+						long period = 0;
+						
+						autopost_task = new AutoPostTimerTask();
+						autopost_task.post = ap;
+						autopost_timer = new Timer(true);
 						
 						period = 45000 / ap.accounts.size();
-					    timer.scheduleAtFixedRate(task, 100, period);
+						autopost_timer.scheduleAtFixedRate(autopost_task, 100, period);
+						
+						autopost_timers.add(autopost_timer);
 					}
 				}
+			
 			}
-		}).start();
-		
+		};
+		daemon_timer = new Timer(true);
+		daemon_timer.scheduleAtFixedRate(daemon_task, 100, 20000);
+	    		
 		return super.onStartCommand(intent, flags, startId);
 	}
 
