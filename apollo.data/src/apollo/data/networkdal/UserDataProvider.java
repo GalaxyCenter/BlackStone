@@ -373,4 +373,10 @@ public class UserDataProvider extends DataProvider implements IUserDataProvider 
 		return Integer.parseInt(body);
 	}
 
+	@Override
+	public User getUserByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

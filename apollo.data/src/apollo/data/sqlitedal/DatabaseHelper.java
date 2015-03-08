@@ -43,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		buf1.append(User.Columns.ID);
 		buf1.append(" integer primary key,");
 		buf1.append(User.Columns.NAME);
-		buf1.append(" varchar(16),");
+		buf1.append(" varchar(16) COLLATE NOCASE,");
 		buf1.append(User.Columns.PASSWORD);
 		buf1.append(" varchar(64),");
 		buf1.append(User.Columns.TICKET);

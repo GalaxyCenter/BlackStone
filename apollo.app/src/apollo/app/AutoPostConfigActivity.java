@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -14,11 +16,14 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import apollo.app.home.MainTabActivity;
 import apollo.bll.AutoPosts;
@@ -136,6 +141,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 			}			
 		});
 	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -146,6 +152,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 				// 当data为空时即选中所有用户
 				if (data == null) {
 					mAccounts.setSummary(R.string.autopost_all_user);
+					mProfile.accounts = null;
 				} else {
 					Bundle bundle = null;
 					
@@ -153,7 +160,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 					mProfile.accounts = bundle.getParcelableArrayList("users");
 					mAccounts.setSummary(R.string.autopost_selected_user);
 				}
-				
+				onPreferenceChange(mAccounts, mProfile.accounts);
 			}
 		}
 	}
@@ -164,6 +171,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 		mFloorNum.getEditText().setFilters(new InputFilter[]{new InputFilter.LengthFilter(9)});  
 		
 		mBody = (EditTextPreference) findPreference(Constants.AutoPostSettings.KEY_POST_BODY);
+	
 		mStartTime = (Preference) findPreference(Constants.AutoPostSettings.KEY_START_TIME);
 		mEndTime = (Preference) findPreference(Constants.AutoPostSettings.KEY_END_TIME);
 		mAccounts = (Preference) findPreference(Constants.AutoPostSettings.KEY_ACCOUNTS);
@@ -213,11 +221,13 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 		}
 		
 		if (profile.accounts == null) 
-			mAccounts.setSummary(R.string.autopost_selected_user);
-		else
 			mAccounts.setSummary(R.string.autopost_all_user);
+		else
+			mAccounts.setSummary(R.string.autopost_selected_user);
 		
 		mBody.setSummary(profile.postBody);
+		mBody.setText(profile.postBody);
+		
 		mStartTime.setSummary((new DateTime(profile.start).toString()));
 		mEndTime.setSummary((new DateTime(profile.end).toString()));
 	}

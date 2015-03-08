@@ -1,6 +1,7 @@
 package apollo.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,9 +17,10 @@ import apollo.data.model.AutoPost;
 import apollo.data.model.Post;
 import apollo.data.model.User;
 import apollo.util.DataSet;
+import apollo.util.DateTime;
 
 public class AutoPostService extends Service {
-
+	
 	class AutoPostTimerTask extends TimerTask {
 
 		public AutoPost post = null;
@@ -35,9 +37,8 @@ public class AutoPostService extends Service {
 			try {
 				createPost(post, curIdx);
 			} catch (Exception ex) {
-				Log.e(getClass().getName(), "createPost exception");
+				Log.e(getClass().getName(), "createPost exception:" + post.thread.getSubject());
 			}
-			Log.i("info", "info");
 			curIdx++;
 		}
 	}
@@ -93,11 +94,15 @@ public class AutoPostService extends Service {
 		}
 	}
 	
+	private HashMap<String, DateTime> mUserPostTimeMap;
+	
 	private void createPost(AutoPost ap, int userIdx) {
 		Post p = null;
 		User u = null;
+		DateTime prePostTime = null;
+		DateTime curPostTime = null;
+		long postDiff = 0;
 		
-			
 		p = new Post();
 		p.setThreadId(ap.thread.getThreadId());
 		p.setSection(ap.thread.getSection());
@@ -106,8 +111,22 @@ public class AutoPostService extends Service {
 		
 		u = ap.accounts.get(userIdx);
 		
-		Posts.add(p, u);
+		// 一个id在45秒内只能回复一次
+		curPostTime = DateTime.now();
+		prePostTime = mUserPostTimeMap.get(u.getName());
+		if (prePostTime == null) {
+			postDiff = 46000;
+		} else {
+			postDiff = DateTime.diff(curPostTime, prePostTime);
+		}
+	
+		if (postDiff > 45000) {
+			//Posts.add(p, u);
+			mUserPostTimeMap.put(u.getName(), curPostTime);
+			Log.i("createPost", DateTime.now().toString() + "#" + p.getSubject() + "#" + u.getName());	
+		}
 	}
+	
 	@Override
 	public IBinder onBind(Intent arg0) {
 		return null;
@@ -116,6 +135,8 @@ public class AutoPostService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		
+		mUserPostTimeMap = new HashMap<String, DateTime>();
 	}
 
 	@Override
@@ -129,7 +150,6 @@ public class AutoPostService extends Service {
 			@Override
 			public void run() {
 				DataSet<AutoPost> datas = null;
-				List<AutoPost> posts = null;
 				User user = null;				
 				
 				// 清理过时的任务
@@ -144,9 +164,9 @@ public class AutoPostService extends Service {
 				autopost_timers.clear();
 				
 				// 重新处理新的任务
-				datas = AutoPosts.getAutoPosts(1, 3);
-				posts = datas.getObjects();
-				for(AutoPost ap:posts) {
+				datas = AutoPosts.getAutoPosts(1, Integer.MAX_VALUE);
+				Log.i("daemon_task", "run:" + datas.getObjects().size());
+				for(AutoPost ap:datas.getObjects()) {
 					
 					if (ap.accounts == null) {
 						// ap.accounts为空既是全选所有用户
@@ -157,7 +177,7 @@ public class AutoPostService extends Service {
 						// 处理选中的特定用户
 						for(int i=0; i<ap.accounts.size(); i++) {
 							user = ap.accounts.get(i);
-							user = Users.getUser(user.getUserId());
+							user = Users.getUserByName(user.getName());
 							ap.accounts.set(i, user);
 						}
 					}
@@ -188,7 +208,7 @@ public class AutoPostService extends Service {
 			}
 		};
 		daemon_timer = new Timer(true);
-		daemon_timer.scheduleAtFixedRate(daemon_task, 100, 20000);
+		daemon_timer.scheduleAtFixedRate(daemon_task, 100, 60000);
 	    		
 		return super.onStartCommand(intent, flags, startId);
 	}

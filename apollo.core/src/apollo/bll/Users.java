@@ -60,6 +60,13 @@ public class Users {
 		return user;
 	}
 	
+	public static User getUserByName(String name) {
+		User user = null;
+
+		user = localProvider.getUserByName(name);
+		return user;
+	}
+	
 	public static void add(User user) {
 		localProvider.add(user);
 	}

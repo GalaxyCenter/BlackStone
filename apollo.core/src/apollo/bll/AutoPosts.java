@@ -19,10 +19,12 @@ public class AutoPosts {
 	}
 	
 	public static int save(AutoPost config) {
-		if (config.id < 0)
+		if (config.id < 0) {
 			return add(config);
-		else
-			return update(config.id, config);
+		} else {
+			update(config.id, config);
+			return config.id;
+		}
 	}
 
 	public static int add(AutoPost config) {
