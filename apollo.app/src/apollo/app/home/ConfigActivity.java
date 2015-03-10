@@ -13,6 +13,9 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import apollo.app.AccountActivity;
 import apollo.app.LoginActivity;
 import apollo.app.R;
@@ -50,6 +53,9 @@ public class ConfigActivity extends PreferenceActivity implements Preference.OnP
 	private CheckBoxPreference mVibrateEnable = null;
 	private Preference mClearCache = null;
 
+	private Button mBack = null;
+	private TextView mTopTitle = null;
+	
 	public static void startActivity(Activity activity) {
 		Intent intent = null;
 		
@@ -66,7 +72,9 @@ public class ConfigActivity extends PreferenceActivity implements Preference.OnP
 
 		initPreference();
 		initEntryValues();
-
+		
+		initViews();
+		
 		if (mConfig == null)
 			mConfig = Configs.getConfig(0);
 
@@ -89,7 +97,7 @@ public class ConfigActivity extends PreferenceActivity implements Preference.OnP
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 				if (ApolloApplication.app().getCurrentUser() == null) 
-					LoginActivity.startActivity(ConfigActivity.this, MainTabActivity.ACTIVITY_SETTINGS, ConfigActivity.this.getString(R.string.login_person_tab), RequestResponseCode.REQUEST_LOGIN_USE);
+					LoginActivity.startActivityForResult(ConfigActivity.this, MainTabActivity.ACTIVITY_SETTINGS, ConfigActivity.this.getString(R.string.login_person_tab), RequestResponseCode.REQUEST_LOGIN_USE);
 				else 
 					AccountActivity.startActivity(ConfigActivity.this, AccountViewMode.ACCOUNT_LIST_MODE);
  
@@ -124,6 +132,13 @@ public class ConfigActivity extends PreferenceActivity implements Preference.OnP
 		
 		mFontSizeEntries = res.getStringArray(R.array.font_entries);
 		mFontSizeValues = res.getStringArray(R.array.font_values);
+	}
+	
+	private void initViews() {
+		mBack = (Button) findViewById(R.id.back);
+		mBack.setVisibility(View.INVISIBLE);
+		mTopTitle = (TextView) findViewById(R.id.top_title);
+		mTopTitle.setText(R.string.settings);
 	}
 	
 	private void setPreference(ListPreference preference, int value, String strs[], String values[], int size) {

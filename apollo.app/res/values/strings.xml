@@ -113,6 +113,7 @@
     <string name="about">关于</string>
     <string name="other">其它</string>
     <string name="account">帐号</string>
+    <string name="settings">设置</string>
     <string name="msg_remind">消息提醒</string>
     <string name="remind_enable">开启提醒</string>
     <string name="remind_type">提醒类型</string>

@@ -12,8 +12,7 @@
         <ImageView android:id="@id/more" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_marginLeft="8.0dip" android:src="@drawable/title_good" />
       </LinearLayout>
     </LinearLayout>
-    <Button style="@style/comm_controls" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:background="@drawable/title_write" android:clickable="false" android:visibility="invisible" />
-    <Button android:id="@id/search" style="@style/comm_controls" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:background="@drawable/title_search" android:visibility="gone" />
+    <Button android:id="@id/search" style="@style/comm_controls" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:background="@drawable/title_search" android:visibility="invisible" />
   </LinearLayout>
   <LinearLayout android:id="@id/bottom_bar" android:layout_width="fill_parent" android:layout_height="54.0dip" android:layout_alignParentBottom="true" android:background="@drawable/pb_bottom_bar_bg" android:gravity="center_vertical">
     <Button android:id="@id/refresh" style="@style/frs_pb_bottom_bar" android:drawableTop="@drawable/frs_pb_bottom_btn_refresh" android:text="@string/refresh" />

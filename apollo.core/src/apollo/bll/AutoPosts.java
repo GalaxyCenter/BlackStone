@@ -36,4 +36,9 @@ public class AutoPosts {
 		IAutoPostDataProvider localProvider = DataAccess.createLocalAutoPostDataProvider();
 		return localProvider.update(id, config);
 	}
+	
+	public static int delete(int id) {
+		IAutoPostDataProvider localProvider = DataAccess.createLocalAutoPostDataProvider();
+		return localProvider.delete(id);
+	}
 }

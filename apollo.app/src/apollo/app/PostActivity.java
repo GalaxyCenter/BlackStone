@@ -325,7 +325,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 	}
 
 	private void initViews() {		
-		mListFooter = (RelativeLayout)LayoutInflater.from(PostActivity.this).inflate(R.layout.footer_list, null);
+		mListFooter = (RelativeLayout)LayoutInflater.from(PostActivity.this).inflate(R.layout.footer_list_more, null);
 		mBottomBar = (LinearLayout) findViewById(R.id.bottom_bar);
 		mFootProgressBar = (ProgressBar) mListFooter.findViewById(R.id.foot_progress);
 		mFootTitle = (TextView) mListFooter.findViewById(R.id.footer_title);

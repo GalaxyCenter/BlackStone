@@ -248,8 +248,17 @@ public class AutoPostDataProvider implements IAutoPostDataProvider {
 	}
 
 	@Override
-	public int delete(AutoPost config) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(int id) {
+		SQLiteDatabase db = null;
+		String whereClause = null;
+		String[] whereArgs = null;
+		int result = -1;
+		
+		whereClause = AutoPost.Columns.ID + "=?";
+		whereArgs = new String[]{Integer.toString(id)};
+		db = DatabaseHelper.getWriteDatabase();
+		result = db.delete(Constants.APOLLO_DATA_TABLE_AUTOPOST, whereClause, whereArgs);
+		db.close();
+		return result;
 	}
 }

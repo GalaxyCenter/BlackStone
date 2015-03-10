@@ -248,12 +248,7 @@ public class AccountActivity extends BaseActivity {
 		return this.mViewMode;
 	}
 	
-	public static void startActivity(Activity activity, AccountViewMode viewMode) {
-//		Intent intent = null;
-//		
-//		intent = new Intent(activity, AccountActivity.class);
-//		activity.startActivity(intent);
-		
+	public static void startActivity(Activity activity, AccountViewMode viewMode) {		
 		Intent intent = null;
 		Bundle bundle = null;
 		
@@ -354,7 +349,7 @@ public class AccountActivity extends BaseActivity {
 			}
 		}; 
 		this.mAdapter = new AccountListAdapter(AccountActivity.this, this.mDeleteListener, this.mUsers);
-		this.mListFooter = (RelativeLayout)LayoutInflater.from(AccountActivity.this).inflate(R.layout.footer_list, null);
+		this.mListFooter = (RelativeLayout)LayoutInflater.from(AccountActivity.this).inflate(R.layout.footer_list_more, null);
 		this.mFootTitle = (TextView) mListFooter.findViewById(R.id.footer_title);
 		this.mFootProgressBar = (ProgressBar) mListFooter.findViewById(R.id.foot_progress);
 		

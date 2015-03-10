@@ -408,16 +408,12 @@ public class ThreadActivity extends BaseActivity implements OnItemClickListener,
 		thread = mThreads.get(position);
 		
 		if (ThreadViewType.AUTOPOST.equals(mThreadViewType)) 
-			AutoPostConfigActivity.startActivity(this, thread);
+			AutoPostConfigActivity.startActivityForResult(this, thread, RequestResponseCode.REQUEST_AUTOPOST_DELETED);
 		else
 			PostActivity.startActivity(this, thread);
 	}
 	
-	public void closeActivity() {
-//		String tab = TextUtils.isEmpty(mBackTab) ? MainTabActivity.ACTIVITY_HOME : mBackTab;
-//		
-//		MainTabActivity.startActivity(this, tab);
-		
+	public void closeActivity() {		
 		if (TextUtils.isEmpty(mBackTab) == true)
 			finish();
 		else
@@ -426,7 +422,7 @@ public class ThreadActivity extends BaseActivity implements OnItemClickListener,
 
 	private void initViews() {
 		View view = null;
-		mListFooter = (RelativeLayout)LayoutInflater.from(ThreadActivity.this).inflate(R.layout.footer_list, null);
+		mListFooter = (RelativeLayout)LayoutInflater.from(ThreadActivity.this).inflate(R.layout.footer_list_more, null);
 		mFootProgressBar = (ProgressBar) mListFooter.findViewById(R.id.foot_progress);
 		mFootTitle = (TextView) mListFooter.findViewById(R.id.footer_title);
 		mTopTitle = (TextView) findViewById(R.id.top_title);	

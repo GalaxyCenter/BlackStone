@@ -210,7 +210,7 @@ public class PrivateMessageActivity extends BaseActivity implements OnItemClickL
 	private void initViews() {
 		mTopTitle = (TextView) findViewById(R.id.top_title);
 		mTopTitle.setText(R.string.msg_user);
-		mListFooter = (RelativeLayout)LayoutInflater.from(PrivateMessageActivity.this).inflate(R.layout.footer_list, null);
+		mListFooter = (RelativeLayout)LayoutInflater.from(PrivateMessageActivity.this).inflate(R.layout.footer_list_more, null);
 		mTopMiddleLayout = (LinearLayout) findViewById(R.id.layout_top_middle);
 		mFootProgressBar = (ProgressBar) mListFooter.findViewById(R.id.foot_progress);
 		mFootTitle = (TextView) mListFooter.findViewById(R.id.footer_title);		
