@@ -352,6 +352,23 @@ public class ThreadActivity extends BaseActivity implements OnItemClickListener,
 	}
 	
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == RequestResponseCode.REQUEST_AUTOPOST_DELETED && resultCode == RESULT_OK) {
+			int thread_id = data.getIntExtra("thread_id", -1);
+			Thread deleted = null;
+			
+			for(Thread thread:ThreadActivity.this.mThreads) {
+				if (thread.getThreadId() == thread_id) {
+					deleted = thread;
+					break;
+				}
+			}
+			ThreadActivity.this.mThreads.remove(deleted);
+			mAdapter.notifyDataSetChanged();
+		}
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Intent intent = null;
 	

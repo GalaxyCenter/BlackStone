@@ -102,9 +102,9 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 	}
 	
 	private void initViews() {
+		ListView listview = getListView();
+		this.mDeleteFooter= (LinearLayout)LayoutInflater.from(this).inflate(R.layout.footer_delete, null);
 		if (mProfile.id > 0) {
-			ListView listview = getListView();
-			this.mDeleteFooter= (LinearLayout)LayoutInflater.from(this).inflate(R.layout.footer_delete, null);
 			listview.addFooterView(this.mDeleteFooter);
 		}
 		
@@ -118,8 +118,14 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 			
 			@Override
 			public void onClick(View v) {
+				Intent data = null;
+				 				
 				AutoPosts.delete(mProfile.id);
-				AutoPostConfigActivity.this.finish();
+ 
+				data = new Intent();
+				data.putExtra("thread_id", mProfile.thread.getThreadId());
+				setResult(RESULT_OK, data);
+				finish();
 			}
 		});
 		

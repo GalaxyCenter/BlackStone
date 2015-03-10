@@ -121,7 +121,7 @@ public class AutoPostService extends Service {
 		}
 	
 		if (postDiff > 45000) {
-			//Posts.add(p, u);
+			Posts.add(p, u);
 			mUserPostTimeMap.put(u.getName(), curPostTime);
 			Log.i("createPost", DateTime.now().toString() + "#" + p.getSubject() + "#" + u.getName());	
 		}
