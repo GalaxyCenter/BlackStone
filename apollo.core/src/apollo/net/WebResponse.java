@@ -9,45 +9,30 @@ import java.util.Vector;
  * œÏ”¶∂‘œÛ
  */
 public class WebResponse {
- 
+
 	String urlString;
- 
-	int defaultPort;
- 
 	String file;
- 
 	String host;
- 
-	String path; 
- 
-	int port;
- 
+	String path;
 	String protocol;
- 
 	String query;
- 
 	String ref;
- 
 	String userInfo;
- 
 	String contentEncoding;
- 
-	byte[] content;
- 
 	String contentType;
- 	
-	int code;
- 
+	String contentCharset;
 	String message;
- 
 	String method;
- 
+
+	int port;
+	int defaultPort;
+	int code;
 	int connectTimeout;
- 
 	int readTimeout;
- 
+	byte[] content;
+	
 	Vector<String> contentCollection;
- 
+
 	URLConnection m_conn;
 	
 	public byte[] getContent() {
@@ -56,6 +41,10 @@ public class WebResponse {
  
 	public String getContentType() {
 		return contentType;
+	}
+	
+	public String getContentCharset() {
+		return contentCharset;
 	}
  
 	public int getCode() {

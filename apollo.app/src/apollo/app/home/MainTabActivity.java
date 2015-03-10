@@ -173,12 +173,12 @@ public class MainTabActivity extends TabActivity implements OnCheckedChangeListe
 					this.mHost.setCurrentTabByTag(MainTabActivity.ACTIVITY_SECTION);
 				break;
 			case R.id.radio_message:
-				LoginActivity.startActivity(this, MainTabActivity.ACTIVITY_MESSAGE, getString(R.string.login_msg_tab), RequestResponseCode.REQUEST_LOGIN_USE);
+				LoginActivity.startActivityForResult(this, MainTabActivity.ACTIVITY_MESSAGE, getString(R.string.login_msg_tab), RequestResponseCode.REQUEST_LOGIN_USE);
 				this.mHost.setCurrentTabByTag(MainTabActivity.ACTIVITY_MESSAGE);
 				break;
 				
 			case R.id.radio_person_info:
-				LoginActivity.startActivity(this, MainTabActivity.ACTIVITY_PERSON, getString(R.string.login_person_tab), RequestResponseCode.REQUEST_LOGIN_USE);
+				LoginActivity.startActivityForResult(this, MainTabActivity.ACTIVITY_PERSON, getString(R.string.login_person_tab), RequestResponseCode.REQUEST_LOGIN_USE);
 				//if (ApolloApplication.app().getCurrentUser() != null) {
 					//bundle = new Bundle();
 					//bundle.putParcelable("user", ApolloApplication.app().getCurrentUser());

@@ -19,10 +19,12 @@ public class AutoPosts {
 	}
 	
 	public static int save(AutoPost config) {
-		if (config.id < 0)
+		if (config.id < 0) {
 			return add(config);
-		else
-			return update(config.id, config);
+		} else {
+			update(config.id, config);
+			return config.id;
+		}
 	}
 
 	public static int add(AutoPost config) {
@@ -33,5 +35,10 @@ public class AutoPosts {
 	public static int update(int id, AutoPost config) {
 		IAutoPostDataProvider localProvider = DataAccess.createLocalAutoPostDataProvider();
 		return localProvider.update(id, config);
+	}
+	
+	public static int delete(int id) {
+		IAutoPostDataProvider localProvider = DataAccess.createLocalAutoPostDataProvider();
+		return localProvider.delete(id);
 	}
 }

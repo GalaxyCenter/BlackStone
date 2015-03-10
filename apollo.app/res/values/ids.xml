@@ -149,6 +149,7 @@
      <item name="button_vcode_refresh" type="id">false</item>
      <item name="frs_tv_title" type="id">false</item>
      <item name="text_login" type="id">false</item>
+     
      <item name="progress_login" type="id">false</item>
      <item name="triangle" type="id">false</item>
      
@@ -159,6 +160,8 @@
      <item name="layout_account" type="id">false</item>
      <item name="layout_password" type="id">false</item>
      <item name="layout_vcode" type="id">false</item>
+     <item name="layout_delete" type="id">false</item>
+     
      <item name="add" type="id">false</item>
      <item name="edit" type="id">false</item>
      <item name="delete" type="id">false</item>

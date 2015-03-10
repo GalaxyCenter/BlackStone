@@ -17,8 +17,11 @@ import android.preference.PreferenceScreen;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import apollo.app.home.MainTabActivity;
 import apollo.bll.AutoPosts;
@@ -36,8 +39,6 @@ import apollo.widget.DateTimePicker.OnDateTimeSetListener;
 public class AutoPostConfigActivity extends PreferenceActivity implements
 		Preference.OnPreferenceChangeListener {
 
-	
-	private TextView mTopTitle;
 	private EditTextPreference mFloorNum = null;
 	private EditTextPreference mBody = null;
 	private Preference mStartTime = null;
@@ -46,7 +47,9 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 	private CheckBoxPreference mFloorEnable = null;
 	private DateTimePicker  mStartDateTimePicker = null;
 	private DateTimePicker  mEndDateTimePicker = null;
-	private Button mBack;
+	private Button mBack = null;
+	private LinearLayout mDeleteFooter = null;
+	private TextView mTopTitle = null;
 	
 	private AutoPost mProfile = null;
 	private boolean mProfileChanged = false;
@@ -58,6 +61,14 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 		intent = new Intent(activity, AutoPostConfigActivity.class);
 		intent.putExtra("thread", (Parcelable)thread);
 		activity.startActivity(intent);
+	}
+	
+	public static void startActivityForResult(Activity activity, Thread thread, int requestCode) {
+		Intent intent = null;
+	
+		intent = new Intent(activity, AutoPostConfigActivity.class);
+		intent.putExtra("thread", (Parcelable)thread);
+		activity.startActivityForResult(intent, requestCode);
 	}
 
 	@Override
@@ -91,12 +102,33 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 	}
 	
 	private void initViews() {
+		ListView listview = getListView();
+		this.mDeleteFooter= (LinearLayout)LayoutInflater.from(this).inflate(R.layout.footer_delete, null);
+		if (mProfile.id > 0) {
+			listview.addFooterView(this.mDeleteFooter);
+		}
+		
 		mBack = (Button) findViewById(R.id.back);
 		mTopTitle = (TextView) findViewById(R.id.top_title);
 		mTopTitle.setText(R.string.aotupost_settings);
 	}
 	
 	private void initListeners() {
+		mDeleteFooter.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent data = null;
+				 				
+				AutoPosts.delete(mProfile.id);
+ 
+				data = new Intent();
+				data.putExtra("thread_id", mProfile.thread.getThreadId());
+				setResult(RESULT_OK, data);
+				finish();
+			}
+		});
+		
 		mBack.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -136,14 +168,18 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 			}			
 		});
 	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		if (resultCode == RESULT_OK ) {
 			if (requestCode == RequestResponseCode.REQUEST_USER_SELECTED) {
+				
+				// 当data为空时即选中所有用户
 				if (data == null) {
 					mAccounts.setSummary(R.string.autopost_all_user);
+					mProfile.accounts = null;
 				} else {
 					Bundle bundle = null;
 					
@@ -151,7 +187,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 					mProfile.accounts = bundle.getParcelableArrayList("users");
 					mAccounts.setSummary(R.string.autopost_selected_user);
 				}
-				
+				onPreferenceChange(mAccounts, mProfile.accounts);
 			}
 		}
 	}
@@ -162,6 +198,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 		mFloorNum.getEditText().setFilters(new InputFilter[]{new InputFilter.LengthFilter(9)});  
 		
 		mBody = (EditTextPreference) findPreference(Constants.AutoPostSettings.KEY_POST_BODY);
+	
 		mStartTime = (Preference) findPreference(Constants.AutoPostSettings.KEY_START_TIME);
 		mEndTime = (Preference) findPreference(Constants.AutoPostSettings.KEY_END_TIME);
 		mAccounts = (Preference) findPreference(Constants.AutoPostSettings.KEY_ACCOUNTS);
@@ -177,7 +214,7 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 				if (ApolloApplication.app().getCurrentUser() == null) 
-					LoginActivity.startActivity(AutoPostConfigActivity.this, MainTabActivity.ACTIVITY_SETTINGS, AutoPostConfigActivity.this.getString(R.string.login_person_tab), RequestResponseCode.REQUEST_LOGIN_USE);
+					LoginActivity.startActivityForResult(AutoPostConfigActivity.this, MainTabActivity.ACTIVITY_SETTINGS, AutoPostConfigActivity.this.getString(R.string.login_person_tab), RequestResponseCode.REQUEST_LOGIN_USE);
 				else 
 					AccountActivity.startActivityForResult(AutoPostConfigActivity.this, AccountViewMode.ACCOUNT_SELECT_MODE, RequestResponseCode.REQUEST_USER_SELECTED, Intent.ACTION_GET_CONTENT);
  
@@ -209,12 +246,15 @@ public class AutoPostConfigActivity extends PreferenceActivity implements
 		if (profile.floorEnable) {
 			mFloorNum.setSummary(profile.floorNum + getString(R.string.floor));
 		}
+		
 		if (profile.accounts == null) 
-			mAccounts.setSummary(R.string.autopost_selected_user);
-		else
 			mAccounts.setSummary(R.string.autopost_all_user);
+		else
+			mAccounts.setSummary(R.string.autopost_selected_user);
 		
 		mBody.setSummary(profile.postBody);
+		mBody.setText(profile.postBody);
+		
 		mStartTime.setSummary((new DateTime(profile.start).toString()));
 		mEndTime.setSummary((new DateTime(profile.end).toString()));
 	}

@@ -96,6 +96,37 @@ public class UserDataProvider implements IUserDataProvider {
 		db.close();
 		return user;
 	}
+	
+
+	@Override
+	public User getUserByName(String name) {
+		SQLiteDatabase db = null;
+		Cursor cursor = null;
+		String[] columns = null;
+		String[] selectionArgs = null;
+		String selection = null;
+		User user = null;
+		
+		db = DatabaseHelper.getReadDatabase();
+		columns = new String[] {User.Columns.ID, User.Columns.NAME, User.Columns.PASSWORD, User.Columns.TICKET, User.Columns.ACTIVE};
+		selection = User.Columns.NAME + "=?";
+		selectionArgs = new String[]{name};
+		
+		cursor = db.query(Constants.APOLLO_DATA_TABLE_USER, columns, selection, selectionArgs, null, null, null);
+		if (cursor != null) {
+			for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {			
+				user = new User();
+				user.setUserId(cursor.getInt(0));
+				user.setName(cursor.getString(1));
+				user.setPassword(cursor.getString(2));
+				user.setTicket(cursor.getString(3));
+				user.setActive(cursor.getInt(4) == 1);
+			}
+			cursor.close();
+		}
+		db.close();
+		return user;
+	}
 
 	@Override
 	public int add(User user) {

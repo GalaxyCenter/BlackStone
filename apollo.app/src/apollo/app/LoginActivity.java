@@ -109,7 +109,7 @@ public class LoginActivity extends BaseActivity {
 		}
 	}
 	
-	public static void startActivity(Activity activity, String mainTab, String message, int requestCode) {
+	public static void startActivityForResult(Activity activity, String mainTab, String message, int requestCode) {
 		if (ApolloApplication.app().getCurrentUser() == null) {
 			Intent intent = new Intent(activity, LoginActivity.class);
 			intent.putExtra(MainTabActivity.TAGET_TAB, mainTab);

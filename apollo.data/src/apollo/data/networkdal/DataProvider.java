@@ -44,12 +44,18 @@ public class DataProvider implements IDataProvider {
 		if (propertys.containsKey("Referer") == false) 
 			propertys.put("Referer", "http://www.tianya.cn");
 		
+		if (propertys.containsKey("Accept-Language") == false) 
+			propertys.put("Accept-Language", "zh-CN,en-US;q=0.8,en;q=0.6");
+		
+		if (propertys.containsKey("Accept-Encoding") == false) 
+			propertys.put("Accept-Encoding", "gzip, deflate");
+		
 		if (propertys.containsKey("Cookie") == false && user != null && user.getTicket() != null) 
 			propertys.put("Cookie", user.getTicket());
 		
 		try {
 			_resp = _req.create(url, params, propertys);
-			body = new String(_resp.getContent(), _resp.getContentEncoding());
+			body = new String(_resp.getContent(), _resp.getContentCharset());
 		} catch (IOException ex) {
 			throw new SystemException(ex.getMessage());
 		}

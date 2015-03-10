@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/XShare"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/apollo.core"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/apollo.data"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/WeiboSDK"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry exported="true" kind="lib" path="libs/android-support-v4.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/weibosdkcore.jar"/>
+	<classpathentry exported="true" kind="lib" path="/XShare/libs/libammsdk.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/open_sdk_r3922_lite.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/mta-sdk-1.6.2.jar"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

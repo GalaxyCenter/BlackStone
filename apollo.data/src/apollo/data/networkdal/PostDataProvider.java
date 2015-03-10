@@ -226,8 +226,7 @@ public class PostDataProvider extends DataProvider implements IPostDataProvider 
 		boolean isSuccess = false;
 		try {
 			json = new JSONObject(body);
-			json = json.getJSONObject("data");
-			isSuccess = json.has("error_code") == false;
+			isSuccess = "1".equals(json.get("success"));
 			message = json.getString("message");
 		} catch (JSONException ex) {
 			throw new SystemException(ex.getMessage());

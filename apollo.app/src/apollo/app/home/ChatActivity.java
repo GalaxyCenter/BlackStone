@@ -175,7 +175,7 @@ public class ChatActivity extends BaseActivity {
 	}
 	
 	private void initViews() {
-		mListFooter = (RelativeLayout)LayoutInflater.from(ChatActivity.this).inflate(R.layout.footer_list, null);
+		mListFooter = (RelativeLayout)LayoutInflater.from(ChatActivity.this).inflate(R.layout.footer_list_more, null);
 		mFootProgressBar = (ProgressBar) mListFooter.findViewById(R.id.foot_progress);
 		mTopTitle = (TextView) super.findViewById(R.id.top_title);
 		mTopTitle.setText(mRecipientor.getName());

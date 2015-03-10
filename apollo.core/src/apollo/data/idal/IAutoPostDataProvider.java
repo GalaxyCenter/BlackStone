@@ -12,6 +12,6 @@ public interface IAutoPostDataProvider {
 	
 	int add(AutoPost config);
 	int update(int id, AutoPost config);
-	int delete(AutoPost config);
+	int delete(int id);
 	
 }

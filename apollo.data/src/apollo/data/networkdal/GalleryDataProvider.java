@@ -167,7 +167,7 @@ public class GalleryDataProvider extends DataProvider implements IGalleryDataPro
 		file = new File(filepath);
 		try {
 			_resp = _req.create(url, params, propertys, file);
-			body = new String(_resp.getContent(), _resp.getContentEncoding());
+			body = new String(_resp.getContent(), _resp.getContentCharset());
 		} catch (IOException ex) {
 			throw new SystemException(ex.getMessage());
 		}

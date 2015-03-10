@@ -14,6 +14,8 @@ public interface IUserDataProvider {
 	
 	User getUser(int userId);
 	
+	User getUserByName(String name);
+	
 	User getUserProfile(User user);
 	
 	int add(User user);
