@@ -4,7 +4,6 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import apollo.cache.AppCache;
-import apollo.cache.ICache;
 import apollo.data.dalfactory.DataAccess;
 import apollo.data.idal.IThreadDataProvider;
 import apollo.util.DateTime;
@@ -77,7 +76,7 @@ public class Threads {
 		if (ori_list == null) {
 			postsOlderThan = DateTime.now();
 			ori_list = provider.getThreads(sectionId, sortBy, postsOlderThan);
-			AppCache.add(key, ori_list, ICache.HOUR_FACTOR);
+			AppCache.add(key, ori_list);
 		}
 		
 		if (toIndex > ori_list.size()) {

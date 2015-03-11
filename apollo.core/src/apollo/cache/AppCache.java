@@ -1,60 +1,81 @@
 package apollo.cache;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
-import java.util.Collection;
+import android.support.v4.util.LruCache;
+import android.util.Log;
+import apollo.util.CompatibleUtil;
+import apollo.util.FileUtil;
+import apollo.util.StringUtil;
 
 public class AppCache {
-	private static ICache _cache;
-	
-	private AppCache() {}
+	private static LruCache<String, Object> mCache;
+
+	private AppCache() {
+	}
+
 	static {
-		_cache = new SimpleCache();
+		int maxMem = CompatibleUtil.getMaxMemory();
+		int cacheSize = maxMem / 8;
+
+		mCache = new LruCache<String, Object>(cacheSize);
 	}
-	
+
 	public static void add(String key, Object value) {
-		add(key, value, ICache.MINUTE_FACTOR);
-	}
+		String name = null;
 		
-	public static void add(String key, Object value, int seconds) {
-		_cache.add(key, value, seconds);
+		name = StringUtil.getMD5Str(key);
+		if (FileUtil.exists("data", name) == false) {
+			ByteArrayOutputStream bos = null;
+			ObjectOutputStream oos = null;
+			byte[] data = null;
+
+			bos = new ByteArrayOutputStream();
+			try {
+				oos = new ObjectOutputStream(bos);
+				oos.writeObject(value);
+				oos.flush();
+				data = bos.toByteArray();
+			} catch (Exception ex) {
+				Log.e("AppCache.add", ex.getMessage());
+			} finally {
+				if (oos  != null) {try{oos.close();}catch(Exception ex){}}
+				if (bos  != null) {try{bos.close();}catch(Exception ex){}}
+			}
+			
+			if (data != null) {
+				FileUtil.saveFile("data", name, data);
+			}
+		}
+		mCache.put(key, value);
 	}
-	
-	public static void add(String key, String group, Object value) {
-		add(key, group, value, ICache.MINUTE_FACTOR);
-	}
-	
-	public static void add(String key, String group, Object value, int seconds) {
-		add(key, new String[]{group}, value, seconds);
-	}
-	
-	public static void add(String key, String[] groups, Object value) {
-		add(key, groups, value, ICache.MINUTE_FACTOR);
-	}
-	public static void add(String key, String[] groups, Object value, int seconds) {
-		_cache.add(key, groups, value, seconds);
-	}
-	
+
 	public static void remove(String key) {
-		_cache.remove(key);
+		mCache.remove(key);
 	}
-	
+
 	public static void clear() {
-		_cache.clear();
+		mCache.evictAll();
 	}
-	
-	public static void clear(String group) {
-		_cache.clear(group);		
-	}
-	
+
 	public static Object get(String key) {
-		return _cache.get(key);
-	}
-	
-	public static Collection<String> getKeys() {
-		return _cache.getKeys();
-	}
-	
-	public static Collection<Object> getValues() {
-		return _cache.getValues();
+		Object obj = null;
+
+		obj = mCache.get(key);
+		if (obj == null) {
+			String name = null;
+			
+			name = StringUtil.getMD5Str(key);
+			if (FileUtil.exists("data", name) == true) {
+				byte[] data = null;
+				
+				data = FileUtil.getFileData("data", name);
+				obj = FileUtil.data2Object(data);			
+			}
+		}
+		return obj;
 	}
 }

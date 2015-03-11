@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 
 import apollo.cache.AppCache;
-import apollo.cache.ICache;
 import apollo.core.ApolloApplication;
 import apollo.core.R;
 import apollo.data.dalfactory.DataAccess;
@@ -95,7 +94,7 @@ public class Posts {
 				FileUtil.saveFile("post", name, datas);
 			}
 			
-			AppCache.add(key, datas, ICache.MINUTE_FACTOR);			
+			AppCache.add(key, datas);			
 		}
 		if (userId > 0) {
 			Post post = null;
