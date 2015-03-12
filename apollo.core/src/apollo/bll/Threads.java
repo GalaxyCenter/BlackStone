@@ -96,17 +96,30 @@ public class Threads {
 		return provider.search(sectionId, searchTerms, pageIndex);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<Thread> getRecommendImageThread() {
 		List<Thread> threads = null;
+		String key = "threads_recommend_imgs";
 		
-		threads = provider.getRecommendImageThread();
+		threads = (List<Thread>) AppCache.get(key);
+		if (threads == null) {
+			threads = provider.getRecommendImageThread();
+			AppCache.add(key, threads);
+		}
+		
 		return threads;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<String> getRecommend() {
 		List<String> contents = null;
+		String key = "threads_recommend";
 		
-		contents  = provider.getRecommends();
+		contents = (List<String>)AppCache.get(key);
+		if (contents == null) {
+			contents  = provider.getRecommends();
+			AppCache.add(key, contents);
+		}
 		return contents;
  	}
 }

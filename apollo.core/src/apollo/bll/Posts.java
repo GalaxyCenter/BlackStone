@@ -154,7 +154,6 @@ public class Posts {
 			return datas.getObjects().get(0);
 	}
 	
-	
 	public static void save(Post post, User user) {
 		if (post.getPostType().equals(PostType.REPLY))
 			localProvider.add(post, user);

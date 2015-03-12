@@ -1,10 +1,6 @@
 package apollo.cache;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
-
 import android.support.v4.util.LruCache;
-import android.util.Log;
 import apollo.util.CompatibleUtil;
 import apollo.util.FileUtil;
 import apollo.util.StringUtil;
@@ -33,6 +29,11 @@ public class AppCache {
 	}
 
 	public static void remove(String key) {
+		String name = null;
+
+		name = StringUtil.getMD5Str(key);
+		FileUtil.deleteFile("data", name);
+
 		mCache.remove(key);
 	}
 
