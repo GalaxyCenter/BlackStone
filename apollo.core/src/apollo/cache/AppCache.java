@@ -1,8 +1,6 @@
 package apollo.cache;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import android.support.v4.util.LruCache;
@@ -29,26 +27,7 @@ public class AppCache {
 		
 		name = StringUtil.getMD5Str(key);
 		if (FileUtil.exists("data", name) == false) {
-			ByteArrayOutputStream bos = null;
-			ObjectOutputStream oos = null;
-			byte[] data = null;
-
-			bos = new ByteArrayOutputStream();
-			try {
-				oos = new ObjectOutputStream(bos);
-				oos.writeObject(value);
-				oos.flush();
-				data = bos.toByteArray();
-			} catch (Exception ex) {
-				Log.e("AppCache.add", ex.getMessage());
-			} finally {
-				if (oos  != null) {try{oos.close();}catch(Exception ex){}}
-				if (bos  != null) {try{bos.close();}catch(Exception ex){}}
-			}
-			
-			if (data != null) {
-				FileUtil.saveFile("data", name, data);
-			}
+			FileUtil.saveFile("data", name, value);
 		}
 		mCache.put(key, value);
 	}

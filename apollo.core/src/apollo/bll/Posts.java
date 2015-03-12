@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 
+
 import apollo.cache.AppCache;
 import apollo.core.ApolloApplication;
 import apollo.core.R;
@@ -63,39 +64,26 @@ public class Posts {
 	}
 		
 	public static DataSet<Post> getPosts(String sectinId, int threadId, int userId, int pageIndex, int pageSize) {
-		return Posts.getPosts(sectinId, threadId, userId, pageIndex, pageSize, false);
+		return Posts.getPosts(sectinId, threadId, userId, pageIndex, pageSize, true, false);
 	} 
 	
 	@SuppressWarnings("unchecked")
-	public static DataSet<Post> getPosts(String sectionId, int threadId, int userId, int pageIndex, int pageSize, boolean flush) {
+	public static DataSet<Post> getPosts(String sectionId, int threadId, int userId, int pageIndex, int pageSize, boolean cacheable, boolean flush) {
 		DataSet<Post> datas = null;
 		List<Post> posts = null;
 		String key = null;
-		String name = null;
-		
+
 		key = MessageFormat.format(KEY_POSTS, sectionId, threadId, pageIndex);
-		name = StringUtil.getMD5Str(key);
-		if (flush) {
+		if (flush) 
 			AppCache.remove(key);
-			FileUtil.deleteFile("post", name);
-		}
 		
 		datas = (DataSet<Post>)AppCache.get(key);
 		if (datas == null) {
-			byte[] bytes = null;
-			
-			try {
-				bytes = FileUtil.getFileData("post", name);
-				datas = (DataSet<Post>)FileUtil.data2Object(bytes);
-			} catch (Exception ex) {
-			}
-			if (datas == null) {
-				datas = remoteProvider.getPosts(sectionId, threadId, userId, pageIndex, pageSize, SortBy.LAST_REPLY, SortOrder.ASCENDING);
-				FileUtil.saveFile("post", name, datas);
-			}
-			
-			AppCache.add(key, datas);			
+			datas = remoteProvider.getPosts(sectionId, threadId, userId, pageIndex, pageSize, SortBy.LAST_REPLY, SortOrder.ASCENDING);
+			if (cacheable)
+				AppCache.add(key, datas);			
 		}
+		
 		if (userId > 0) {
 			Post post = null;
 			DataSet<Post> new_dataset = null;
