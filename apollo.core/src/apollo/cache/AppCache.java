@@ -19,10 +19,14 @@ public class AppCache {
 	}
 
 	public static void add(String key, Object value) {
+		add(key, value, true);
+	}
+	
+	public static void add(String key, Object value, boolean persistent) {
 		String name = null;
 		
 		name = StringUtil.getMD5Str(key);
-		if (FileUtil.exists("data", name) == false) {
+		if (persistent && FileUtil.exists("data", name) == false) {
 			FileUtil.saveFile("data", name, value);
 		}
 		mCache.put(key, value);
