@@ -4,6 +4,7 @@
     <item name="ok" type="id">false</item>
 
     <item name="select_all" type="id">false</item>
+    <item name="add_bookmark" type="id">false</item>
     
     <item name="gone" type="id">false</item>
     <item name="iconQunZu" type="id">false</item>

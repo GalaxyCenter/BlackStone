@@ -9,7 +9,7 @@
     <LinearLayout android:layout_gravity="top" android:id="@id/layout_top" android:background="@drawable/title_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true" style="@style/title_margin">
         <Button android:layout_gravity="center_vertical" android:id="@id/back" android:background="@drawable/title_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back" style="@style/comm_controls" />
         <TextView android:gravity="center" android:layout_gravity="center_vertical" android:id="@id/top_title" android:layout_width="wrap_content" android:layout_height="fill_parent" android:singleLine="true" android:layout_weight="1.0" style="@style/title_3_info" />
-        <Button android:layout_gravity="center_vertical" android:id="@id/refresh" android:background="@drawable/title_refresh" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" style="@style/comm_controls" />
+        <Button android:layout_gravity="center_vertical" android:id="@id/add_bookmark" android:background="@drawable/like_star_gray" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" style="@style/comm_controls" />
     </LinearLayout>
     <LinearLayout android:id="@id/bottom_bar" android:background="@drawable/pb_bottom_bar_bg" android:layout_width="fill_parent" android:layout_height="54.0dip" android:layout_alignParentBottom="true">
         <Button android:id="@id/refresh" android:visibility="gone" android:text="@string/refresh" android:drawableTop="@drawable/frs_bottom_refresh" style="@style/frs_pb_bottom_bar" />

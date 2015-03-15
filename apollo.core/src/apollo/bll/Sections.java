@@ -30,6 +30,9 @@ public class Sections {
 		try {
 			section = localProvider.getSection(id);
 		} catch (ApplicationException ex) {
+		}
+		
+		if (section == null) {
 			section = remoteProvider.getSection(id);
 			add(section);
 		}
@@ -40,8 +43,17 @@ public class Sections {
 		localProvider.add(section);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<Section> search(String searchTerms) {
-		return remoteProvider.search(searchTerms);
+		List<Section> data = null;
+		String key = "section_search:" + searchTerms;
+		
+		data = (List<Section>) AppCache.get(key);
+		if (data == null) {
+			data =remoteProvider.search(searchTerms);
+			AppCache.add(key, data, false);
+		}
+		return data;
 	}
 	
 	public static List<Section> loadSections() {

@@ -35,16 +35,24 @@ public class Posts {
 	}
 		
 	public static List<Post> getIndexOf(String sectinId, int threadId, int fromIndex, int toIndex) {
-		return getIndexOf(sectinId, threadId, 0, fromIndex, toIndex);
+		return getIndexOf(sectinId, threadId, 0, fromIndex, toIndex, false);
+	}
+	
+	public static List<Post> getIndexOf(String sectinId, int threadId, int fromIndex, int toIndex, boolean flush) {
+		return getIndexOf(sectinId, threadId, 0, fromIndex, toIndex, false);
 	}
 	
 	public static List<Post> getIndexOf(String sectinId, int threadId, int userId, int fromIndex, int toIndex) {
+		return getIndexOf(sectinId, threadId, userId, fromIndex, toIndex, false);
+	}
+	
+	public static List<Post> getIndexOf(String sectinId, int threadId, int userId, int fromIndex, int toIndex, boolean flush) {
 		int pageIndex = 0;
 		List<Post> posts = null;
 		DataSet<Post> datas = null;
 		
 		pageIndex = (fromIndex / 100) + 1;
-		datas = Posts.getPosts(sectinId, threadId, userId, pageIndex, 100);
+		datas = Posts.getPosts(sectinId, threadId, userId, pageIndex, 100, true, flush);
 		
 		fromIndex = (fromIndex % 100);
 		toIndex = (toIndex % 100);

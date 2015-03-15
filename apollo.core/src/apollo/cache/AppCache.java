@@ -33,21 +33,20 @@ public class AppCache {
 	}
 	
 	public static void add(String key, Object value, boolean persistent) {
-		add(key, value, persistent, 3600);
+		add(key, value, persistent ? 3600 : 0);
 	}
 	
 	/**
 	 * 
 	 * @param key
 	 * @param value
-	 * @param persistent 是否可持久化
 	 * @param seconds 可持久化时间
 	 */
-	public static void add(String key, Object value, boolean persistent, int seconds) {
+	public static void add(String key, Object value, int seconds) {
 		String name = null;
 		
 		name = StringUtil.getMD5Str(key);
-		if (persistent && FileUtil.exists("data", name) == false) {
+		if (seconds != 0 && FileUtil.exists("data", name) == false) {
 			CachedObject obj = new CachedObject();
 			obj.ref = value;
 			obj.expiration = DateTime.now().addSeconds(seconds);

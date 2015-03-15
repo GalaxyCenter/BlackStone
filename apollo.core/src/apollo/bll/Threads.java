@@ -91,9 +91,18 @@ public class Threads {
 		return ori_list.subList(fromIndex, toIndex);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<Thread> search(String sectionId, String searchTerms, int pageIndex) {
+		List<Thread> data = null;
+		String key = "thread_search_" + sectionId + searchTerms + pageIndex;
+		
 		searchTerms = Encoding.urlEncode(searchTerms);
-		return provider.search(sectionId, searchTerms, pageIndex);
+		data = (List<Thread>) AppCache.get(key);
+		if (data == null) {
+			data = provider.search(sectionId, searchTerms, pageIndex);
+			AppCache.add(key, data, false);
+		}
+		return data;
 	}
 	
 	@SuppressWarnings("unchecked")

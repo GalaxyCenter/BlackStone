@@ -86,7 +86,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 	private Button mReply;
 	private Button mMore;
 	private Button mBtnBack;
-	private Button mBtnRefresh;
+	private Button mBtnAddBookMark;
 	private Button mSkipFloor;
 	private Dialog mSkipFloorDialog;
 	private Dialog mMoreDialog;
@@ -100,6 +100,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 	private DialogMoreAdapter mDialogMoreAdapter;
 	private PostViewHolder mViewHolder;
 	private int mFilterUserId;
+	private boolean mFlushPost;
 	
 	private static int THREADPOOL_SIZE = 4;// ??????С
 
@@ -179,6 +180,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 			case POST_LOAD_FAIL:
 				ApplicationException ex = (ApplicationException) msg.obj;
 				showToast(ApolloApplication.app().getString(ex.getResid()));
+				mFlushPost = true;
 				break;
 
 			default:
@@ -258,6 +260,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 	
 	public PostActivity() {
 		super();
+		this.mFlushPost = false;
 		this.mToIndex = 0;
 		this.mPageSize = 20;
 		this.mPostViewType = PostViewType.NORMAL;
@@ -276,6 +279,19 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 		activity.startActivity(intent);
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == RESULT_OK ) {
+			if (requestCode == RequestResponseCode.REQUEST_POST_REPLY) {
+				if (mFlushPost == true) {
+					mExeService.submit(new GetPostListThread());
+				}					
+			}
+		}
+	}
+	
 	private void addPost() {
 		User user = null;
 		Post post = null;
@@ -285,7 +301,6 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 		post.setAuthor(user);
 		post.setSubject(getString(R.string.post_subject_prefix) + mThread.getSubject());
 		post.setBody(getString(R.string.post_body_mark));
-		Log.i("post", post.getBody());
 		post.setThreadId(mThread.getThreadId());
 		post.setSection(mThread.getSection());
 		mAddPostTask = new AddPostAsyncTask();
@@ -334,7 +349,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 		mTopTitle = (TextView) findViewById(R.id.top_title);
 		mTopTitle.setText(mThread.getSubject());
 		mBtnBack = (Button) findViewById(R.id.back);
-		mBtnRefresh = (Button) findViewById(R.id.refresh);
+		mBtnAddBookMark = (Button) findViewById(R.id.add_bookmark);
 		mSkipFloor = (Button) findViewById(R.id.skip_floor);
 		mMore = (Button) findViewById(R.id.more);
 		mPostList = (ListView) super.findViewById(R.id.list);
@@ -367,10 +382,10 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 			}
 		});
 		
-		mBtnRefresh.setOnClickListener(new OnClickListener() {
+		mBtnAddBookMark.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				addBookmark(mThread);
 			}
 		});
 		
@@ -608,7 +623,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 			LoginActivity.startActivityForResult(PostActivity.this, getString(R.string.login_to_use), true, RequestResponseCode.REQUEST_LOGIN_REPLY);
 		} else {
 			if (PostMode.REPLY.equals(mode))
-				PostEditActivity.startActivity(PostActivity.this, thread);
+				PostEditActivity.startActivityForResult(PostActivity.this, thread, RequestResponseCode.REQUEST_POST_REPLY);
 			else
 				PostEditActivity.startActivity(PostActivity.this, mode, thread, post);
 		}	
@@ -634,8 +649,13 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 		mFromIndex = mToIndex;
 		mToIndex += mPageSize;
 
-		mNewPosts = Posts.getIndexOf(mThread.getSection().getSectionId(), mThread.getThreadId(), mFilterUserId, mFromIndex, mToIndex);
-		//mNewPosts = Posts.getIndexOf("water", 1361115, mFilterUserId, mFromIndex, mToIndex);
+		mNewPosts = Posts.getIndexOf(mThread.getSection().getSectionId(), mThread.getThreadId(), 
+				mFilterUserId, mFromIndex, mToIndex, mFlushPost);
+		
+		// 当加载的内容的数量跟mPageSize不相等时，则设置Flush为true
+		mToIndex = mFromIndex + mNewPosts.size();
+		mFlushPost = mToIndex % mPageSize != 0;
+
 		if (mFromIndex == 0) {
 			Post p = mNewPosts.get(0);
 			mThread.setSubject(p.getSubject());
