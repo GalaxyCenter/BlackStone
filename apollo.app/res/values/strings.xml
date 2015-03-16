@@ -81,6 +81,8 @@
     <string name="post_create_success">发表帖子发表了！</string>
     <string name="post_reply_success">回复帖子成功了！</string>
     <string name="post_mark_success">马克帖子成功了！</string>
+    <string name="post_load_outofrang">亲~已经没有更多内容啦~</string>
+    
     <string name="post_create">发表主题</string>
     <string name="post_reply">回帖:</string>
     <string name="friend_add">添加好友</string>

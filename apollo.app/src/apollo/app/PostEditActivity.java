@@ -265,7 +265,7 @@ public class PostEditActivity extends BaseActivity {
 				if (mPost.getPostType().equals(PostType.DRAFT))
 					Posts.removeDraft(mPost.getPostId());
 				
-	            setResult(-1);
+	            setResult(RESULT_OK);
 	            finish();
 			}
 		}
@@ -283,7 +283,7 @@ public class PostEditActivity extends BaseActivity {
 		activity.startActivity(intent);
 	}
 	
-	public static void startActivity(Activity activity, Thread thread) {
+	public static void startActivityForResult(Activity activity, Thread thread, int requestCode) {
 		Intent intent = null;
 		Bundle bundle = null;
 		
@@ -292,7 +292,7 @@ public class PostEditActivity extends BaseActivity {
 		bundle.putParcelable(KEY_THREAD, thread);
 		intent.putExtras(bundle);
 		intent.putExtra(KEY_MODE, PostMode.REPLY.getValue());
-		activity.startActivity(intent);
+		activity.startActivityForResult(intent, requestCode);
 	}
 	
 	public static void startActivity(Activity activity, PostMode mode, Thread thread, Post post) {
@@ -333,7 +333,7 @@ public class PostEditActivity extends BaseActivity {
 			if (mHasChanged)
 				this.mDraftDialog.show();
 			else
-				finish();					
+				finish();	
 		} else {
 			finish();
 		}

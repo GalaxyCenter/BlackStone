@@ -59,7 +59,7 @@ public class Bookmarks {
 		if (datas == null) {
 			datas = remoteProvider.getThreads(user, pageIndex, pageSize);
 			if (cacheable) 
-				AppCache.add(key, datas);
+				AppCache.add(key, datas, false);
 		}
 		
 		return datas;

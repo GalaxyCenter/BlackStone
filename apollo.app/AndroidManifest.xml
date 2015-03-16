@@ -52,5 +52,12 @@
     </activity>
     <activity android:name="com.tencent.connect.common.AssistActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:configChanges="orientation|keyboardHidden" />
   	<service android:name="apollo.service.AutoPostService" android:enabled="true" />
+  	
+  	<!--  单元测试相关代码 -->
+  	<uses-library android:name="android.test.runner" />
   </application>
+  
+  <uses-permission android:name="android.permission.RUN_INSTRUMENTATION" />
+  <!--  单元测试相关代码 -->
+  <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="apollo.app" android:label="Test for my app"/>
 </manifest>

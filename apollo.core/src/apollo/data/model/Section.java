@@ -1,10 +1,16 @@
 package apollo.data.model;
 
+import java.io.Serializable;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
 
-public class Section implements Parcelable {
+public class Section implements Serializable, Parcelable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String sectionId;
 	private String name;
 	

@@ -15,4 +15,6 @@ public final class RequestResponseCode {
 	public static final int REQUEST_FOLLOW_USER = 1200004;
 	
 	public static final int REQUEST_USER_SELECTED = 1300001;
+	
+	public static final int REQUEST_POST_REPLY = 1400001;
 }

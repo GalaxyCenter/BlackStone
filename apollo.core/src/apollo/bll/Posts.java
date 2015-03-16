@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 
+
 import apollo.cache.AppCache;
-import apollo.cache.ICache;
 import apollo.core.ApolloApplication;
 import apollo.core.R;
 import apollo.data.dalfactory.DataAccess;
@@ -35,16 +35,24 @@ public class Posts {
 	}
 		
 	public static List<Post> getIndexOf(String sectinId, int threadId, int fromIndex, int toIndex) {
-		return getIndexOf(sectinId, threadId, 0, fromIndex, toIndex);
+		return getIndexOf(sectinId, threadId, 0, fromIndex, toIndex, false);
+	}
+	
+	public static List<Post> getIndexOf(String sectinId, int threadId, int fromIndex, int toIndex, boolean flush) {
+		return getIndexOf(sectinId, threadId, 0, fromIndex, toIndex, false);
 	}
 	
 	public static List<Post> getIndexOf(String sectinId, int threadId, int userId, int fromIndex, int toIndex) {
+		return getIndexOf(sectinId, threadId, userId, fromIndex, toIndex, false);
+	}
+	
+	public static List<Post> getIndexOf(String sectinId, int threadId, int userId, int fromIndex, int toIndex, boolean flush) {
 		int pageIndex = 0;
 		List<Post> posts = null;
 		DataSet<Post> datas = null;
 		
 		pageIndex = (fromIndex / 100) + 1;
-		datas = Posts.getPosts(sectinId, threadId, userId, pageIndex, 100);
+		datas = Posts.getPosts(sectinId, threadId, userId, pageIndex, 100, true, flush);
 		
 		fromIndex = (fromIndex % 100);
 		toIndex = (toIndex % 100);
@@ -64,39 +72,26 @@ public class Posts {
 	}
 		
 	public static DataSet<Post> getPosts(String sectinId, int threadId, int userId, int pageIndex, int pageSize) {
-		return Posts.getPosts(sectinId, threadId, userId, pageIndex, pageSize, false);
+		return Posts.getPosts(sectinId, threadId, userId, pageIndex, pageSize, true, false);
 	} 
 	
 	@SuppressWarnings("unchecked")
-	public static DataSet<Post> getPosts(String sectionId, int threadId, int userId, int pageIndex, int pageSize, boolean flush) {
+	public static DataSet<Post> getPosts(String sectionId, int threadId, int userId, int pageIndex, int pageSize, boolean cacheable, boolean flush) {
 		DataSet<Post> datas = null;
 		List<Post> posts = null;
 		String key = null;
-		String name = null;
-		
+
 		key = MessageFormat.format(KEY_POSTS, sectionId, threadId, pageIndex);
-		name = StringUtil.getMD5Str(key);
-		if (flush) {
+		if (flush) 
 			AppCache.remove(key);
-			FileUtil.deleteFile("post", name);
-		}
 		
 		datas = (DataSet<Post>)AppCache.get(key);
 		if (datas == null) {
-			byte[] bytes = null;
-			
-			try {
-				bytes = FileUtil.getFileData("post", name);
-				datas = (DataSet<Post>)FileUtil.data2Object(bytes);
-			} catch (Exception ex) {
-			}
-			if (datas == null) {
-				datas = remoteProvider.getPosts(sectionId, threadId, userId, pageIndex, pageSize, SortBy.LAST_REPLY, SortOrder.ASCENDING);
-				FileUtil.saveFile("post", name, datas);
-			}
-			
-			AppCache.add(key, datas, ICache.MINUTE_FACTOR);			
+			datas = remoteProvider.getPosts(sectionId, threadId, userId, pageIndex, pageSize, SortBy.LAST_REPLY, SortOrder.ASCENDING);
+			if (cacheable)
+				AppCache.add(key, datas);			
 		}
+		
 		if (userId > 0) {
 			Post post = null;
 			DataSet<Post> new_dataset = null;
@@ -166,7 +161,6 @@ public class Posts {
 		else
 			return datas.getObjects().get(0);
 	}
-	
 	
 	public static void save(Post post, User user) {
 		if (post.getPostType().equals(PostType.REPLY))

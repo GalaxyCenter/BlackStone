@@ -4,7 +4,6 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import apollo.cache.AppCache;
-import apollo.cache.ICache;
 import apollo.data.dalfactory.DataAccess;
 import apollo.data.idal.IThreadDataProvider;
 import apollo.util.DateTime;
@@ -77,7 +76,7 @@ public class Threads {
 		if (ori_list == null) {
 			postsOlderThan = DateTime.now();
 			ori_list = provider.getThreads(sectionId, sortBy, postsOlderThan);
-			AppCache.add(key, ori_list, ICache.HOUR_FACTOR);
+			AppCache.add(key, ori_list, false);
 		}
 		
 		if (toIndex > ori_list.size()) {
@@ -92,22 +91,44 @@ public class Threads {
 		return ori_list.subList(fromIndex, toIndex);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<Thread> search(String sectionId, String searchTerms, int pageIndex) {
+		List<Thread> data = null;
+		String key = "thread_search_" + sectionId + searchTerms + pageIndex;
+		
 		searchTerms = Encoding.urlEncode(searchTerms);
-		return provider.search(sectionId, searchTerms, pageIndex);
+		data = (List<Thread>) AppCache.get(key);
+		if (data == null) {
+			data = provider.search(sectionId, searchTerms, pageIndex);
+			AppCache.add(key, data, false);
+		}
+		return data;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<Thread> getRecommendImageThread() {
 		List<Thread> threads = null;
+		String key = "threads_recommend_imgs";
 		
-		threads = provider.getRecommendImageThread();
+		threads = (List<Thread>) AppCache.get(key);
+		if (threads == null) {
+			threads = provider.getRecommendImageThread();
+			AppCache.add(key, threads);
+		}
+		
 		return threads;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static List<String> getRecommend() {
 		List<String> contents = null;
+		String key = "threads_recommend";
 		
-		contents  = provider.getRecommends();
+		contents = (List<String>)AppCache.get(key);
+		if (contents == null) {
+			contents  = provider.getRecommends();
+			AppCache.add(key, contents);
+		}
 		return contents;
  	}
 }
