@@ -76,7 +76,7 @@ public class Threads {
 		if (ori_list == null) {
 			postsOlderThan = DateTime.now();
 			ori_list = provider.getThreads(sectionId, sortBy, postsOlderThan);
-			AppCache.add(key, ori_list);
+			AppCache.add(key, ori_list, false);
 		}
 		
 		if (toIndex > ori_list.size()) {

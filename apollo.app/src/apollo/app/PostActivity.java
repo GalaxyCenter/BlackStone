@@ -63,6 +63,7 @@ import apollo.widget.PostAdapter.DisplayOtherHandle;
 public class PostActivity extends BaseActivity  implements View.OnClickListener {
 
 	public static final int POST_LOAD_OUTOFRANG = 1002;
+	public static final int POST_NOT_FOUND = 1003;
 	
 	private int mStartIndex;
 	private int mFromIndex;
@@ -162,10 +163,14 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 			Message msg = null;
 			
 			msg = mHandler.obtainMessage();
-			loadPosts();
+			try {
+				loadPosts();
+			} catch (Exception ex) {
+				msg.what = POST_NOT_FOUND;
+				msg.obj = ex;
+			}
 			if (mToIndex == mFromIndex) {
 				msg.what = POST_LOAD_OUTOFRANG;
-				//msg.obj = ex;
 			}
 			mHandler.sendMessage(msg);
 		}
@@ -175,9 +180,11 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
+			case POST_NOT_FOUND:
+				ApplicationException ex = (ApplicationException) msg.obj;
+				showToast(ApolloApplication.app().getString(ex.getResid()));
+				break;
 			case POST_LOAD_OUTOFRANG:
-//				ApplicationException ex = (ApplicationException) msg.obj;
-//				showToast(ApolloApplication.app().getString(ex.getResid()));
 				showToast(getString(R.string.post_load_outofrang));
 				mFlushPost = true;
 				break;
