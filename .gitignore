@@ -36,3 +36,4 @@ proguard/
 !/apollo.app/
 !/apollo.core/
 !/apollo.data/
+!/XShare/
