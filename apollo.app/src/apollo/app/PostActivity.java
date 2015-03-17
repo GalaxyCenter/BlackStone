@@ -520,6 +520,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 									shareView = dialogView.findViewById(R.id.iconQZone);
 									shareView.setOnClickListener(PostActivity.this);
 									shareView = dialogView.findViewById(R.id.iconSinaWeibo);
+									shareView.setOnClickListener(PostActivity.this);
 									
 									mShareDialog.setContentView(dialogView);
 								} else {
@@ -678,13 +679,14 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 		switch(v.getId()) {
 		case R.id.iconSinaWeibo:
 			SinaWeiboParams wb_param = new SinaWeiboParams();
-			wb_param.setText("测试分享的文本");
-
-			proxy = new SinaWeiboProxy(this);
-			//proxy.setPlatformActionListener(paListener); // 设置分享事件回调
+			SinaWeiboProxy wb_proxy = null;
+			
+			wb_param.setText(mThread.getSubject());
+			wb_param.setUrl(mThread.getUrl());
+			wb_proxy = new SinaWeiboProxy(this);
+			wb_proxy.init();
 			// 执行图文分享
-			//proxy.auth();
-			proxy.share(wb_param);
+			wb_proxy.share(wb_param);
 			
 			break;
 		case R.id.iconWeixinTimeline:
