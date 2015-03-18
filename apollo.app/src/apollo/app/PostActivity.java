@@ -3,10 +3,12 @@ package apollo.app;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import xshare.framework.Proxy;
+import xshare.framework.ProxyActionListener;
 import xshare.sina.weibo.SinaWeiboParams;
 import xshare.sina.weibo.SinaWeiboProxy;
 import xshare.tencent.qzone.QZoneParams;
@@ -60,7 +62,7 @@ import apollo.widget.PostAdapter;
 import apollo.widget.PostAdapter.DisplayFloorHandle;
 import apollo.widget.PostAdapter.DisplayOtherHandle;
 
-public class PostActivity extends BaseActivity  implements View.OnClickListener {
+public class PostActivity extends BaseActivity  implements View.OnClickListener, ProxyActionListener {
 
 	public static final int POST_LOAD_OUTOFRANG = 1002;
 	public static final int POST_NOT_FOUND = 1003;
@@ -683,7 +685,9 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 			
 			wb_param.setText(mThread.getSubject());
 			wb_param.setUrl(mThread.getUrl());
+			
 			wb_proxy = new SinaWeiboProxy(this);
+			wb_proxy.setProxyActionListener(this);
 			wb_proxy.init();
 			// Ö´ÐÐÍ¼ÎÄ·ÖÏí
 			wb_proxy.share(wb_param);
@@ -717,5 +721,23 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener 
 			proxy.share(qz_params);
 			break;
 		}
+	}
+
+	@Override
+	public void onComplete(Proxy proxy, int code, Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onError(Proxy proxy, int paramInt, Throwable throwable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCancel(Proxy proxy, int paramInt) {
+		// TODO Auto-generated method stub
+		
 	}
 }

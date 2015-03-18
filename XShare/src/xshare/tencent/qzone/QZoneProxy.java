@@ -15,6 +15,7 @@ import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 
 import xshare.framework.Proxy;
+import xshare.framework.ProxyActionListener;
 import xshare.framework.ProxyActivity;
 import xshare.framework.ProxyParams;
 
@@ -93,5 +94,11 @@ public class QZoneProxy extends Proxy {
 			}
 
 		});
+	}
+
+	@Override
+	public void setProxyActionListener(ProxyActionListener l) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -19,6 +19,7 @@ import com.tencent.mm.sdk.openapi.WXTextObject;
 import com.tencent.mm.sdk.openapi.WXWebpageObject;
 
 import xshare.framework.Proxy;
+import xshare.framework.ProxyActionListener;
 import xshare.framework.ProxyActivity;
 import xshare.framework.ProxyParams;
 import xshare.framework.utils.Util;
@@ -96,5 +97,11 @@ public class WXProxy extends Proxy {
 			}
 			
 		});
+	}
+
+	@Override
+	public void setProxyActionListener(ProxyActionListener l) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -4,9 +4,10 @@ import android.app.Activity;
 
 public abstract class Proxy {
 		
+	public Proxy(Activity activity) {
+	}
 	
 	public abstract void share(ProxyParams params);
 	
-	public Proxy(Activity activity) {
-	}
+	public abstract void setProxyActionListener(ProxyActionListener l);
 }
