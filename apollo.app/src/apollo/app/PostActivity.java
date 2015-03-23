@@ -681,16 +681,15 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 		switch(v.getId()) {
 		case R.id.iconSinaWeibo:
 			SinaWeiboParams wb_param = new SinaWeiboParams();
-			SinaWeiboProxy wb_proxy = null;
 			
 			wb_param.setText(mThread.getSubject());
 			wb_param.setUrl(mThread.getUrl());
 			
-			wb_proxy = new SinaWeiboProxy(this);
-			wb_proxy.setProxyActionListener(this);
-			wb_proxy.init();
+			proxy = new SinaWeiboProxy(this);
+			proxy.setProxyActionListener(this);
+			//proxy.init();
 			// Ö´ÐÐÍ¼ÎÄ·ÖÏí
-			wb_proxy.share(wb_param);
+			proxy.share(wb_param);
 			
 			break;
 		case R.id.iconWeixinTimeline:

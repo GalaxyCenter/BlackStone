@@ -49,7 +49,7 @@ public class WXProxy extends Proxy {
 		}
 		mAppkey = props.getProperty("oauth.tx.weixin.app_key");
 		
-		init(null);
+		init();
 	}
 	
 	@Override
@@ -80,23 +80,22 @@ public class WXProxy extends Proxy {
 		mWXapi.sendReq(req);
 	}
 
-	protected void init(ProxyActivity activty) {
+	protected void init() {
 		mWXapi = WXAPIFactory.createWXAPI(mActivity, mAppkey, false);
 		mWXapi.registerApp(mAppkey);    
 		
-		mWXapi.handleIntent(mActivity.getIntent(), new IWXAPIEventHandler() {
-
-			@Override
-			public void onReq(BaseReq req) {
-				
-			}
-			
-			@Override
-			public void onResp(BaseResp resp) {
-				
-			}
-			
-		});
+		// 此方法需要在Activity.onNewIntent方法中实现
+//		mWXapi.handleIntent(mActivity.getIntent(), new IWXAPIEventHandler() {
+//
+//			@Override
+//			public void onReq(BaseReq req) {
+//			}
+//			
+//			@Override
+//			public void onResp(BaseResp resp) {
+//			}
+//			
+//		});
 	}
 
 	@Override

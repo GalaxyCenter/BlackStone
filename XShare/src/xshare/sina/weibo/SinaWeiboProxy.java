@@ -57,9 +57,11 @@ public class SinaWeiboProxy extends Proxy {
 		}
 		
 		mAppkey = props.getProperty("oauth.sina.app_key");
+		
+		init();
     }
     
-    public void init() {
+    protected void init() {
     
     	// 创建微博分享接口实例
         mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(mActivity, mAppkey);
@@ -79,6 +81,27 @@ public class SinaWeiboProxy extends Proxy {
                 }
             });
         }
+        
+        // 此方法需要在Activity.onNewIntent方法中实现
+//        mWeiboShareAPI.handleWeiboResponse(mActivity.getIntent(), new IWeiboHandler.Response(){
+//
+//			@Override
+//			public void onResponse(BaseResponse baseResp) {
+//				switch (baseResp.errCode) {
+//		        case WBConstants.ErrorCode.ERR_OK:
+//		            Toast.makeText(mActivity, "weibosdk_demo_toast_share_success", Toast.LENGTH_LONG).show();
+//		            break;
+//		        case WBConstants.ErrorCode.ERR_CANCEL:
+//		            Toast.makeText(mActivity, "weibosdk_demo_toast_share_canceled", Toast.LENGTH_LONG).show();
+//		            break;
+//		        case WBConstants.ErrorCode.ERR_FAIL:
+//		            Toast.makeText(mActivity, 
+//		                    " weibosdk_demo_toast_share_failed Error Message: " + baseResp.errMsg, 
+//		                    Toast.LENGTH_LONG).show();
+//		            break;
+//		        }
+//			}
+//        });
     }
             
 	@Override
@@ -104,28 +127,6 @@ public class SinaWeiboProxy extends Proxy {
         
         // 3. 发送请求消息到微博，唤起微博分享界面
         mWeiboShareAPI.sendRequest(request);
-        
-        
-        mWeiboShareAPI.handleWeiboResponse(mActivity.getIntent(), new IWeiboHandler.Response(){
-
-			@Override
-			public void onResponse(BaseResponse baseResp) {
-				switch (baseResp.errCode) {
-		        case WBConstants.ErrorCode.ERR_OK:
-		            Toast.makeText(mActivity, "weibosdk_demo_toast_share_success", Toast.LENGTH_LONG).show();
-		            break;
-		        case WBConstants.ErrorCode.ERR_CANCEL:
-		            Toast.makeText(mActivity, "weibosdk_demo_toast_share_canceled", Toast.LENGTH_LONG).show();
-		            break;
-		        case WBConstants.ErrorCode.ERR_FAIL:
-		            Toast.makeText(mActivity, 
-		                    " weibosdk_demo_toast_share_failed Error Message: " + baseResp.errMsg, 
-		                    Toast.LENGTH_LONG).show();
-		            break;
-		        }
-			}
-                	
-        });
 	}
 
 	@Override

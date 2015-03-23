@@ -45,6 +45,8 @@ public class QZoneProxy extends Proxy {
 		}
 
 		mAppkey = props.getProperty("oauth.tx.qzone.app_key");
+		
+		init();
 	}
 
 	protected void init() {
@@ -57,7 +59,7 @@ public class QZoneProxy extends Proxy {
 		Bundle bundle = new Bundle();
 		QZoneParams params2 = (QZoneParams) params;
 		
-		init();
+		
 		mQzoneShare = new QzoneShare(mActivity, mTencent.getQQToken());
 
 		// 设置分享类型：图文并茂加链接。其他类型见帮助文档
