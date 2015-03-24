@@ -18,6 +18,7 @@ import com.tencent.mm.sdk.openapi.WXMediaMessage;
 import com.tencent.mm.sdk.openapi.WXTextObject;
 import com.tencent.mm.sdk.openapi.WXWebpageObject;
 
+import xshare.framework.IHandleListener;
 import xshare.framework.Proxy;
 import xshare.framework.ProxyActionListener;
 import xshare.framework.ProxyActivity;
@@ -83,24 +84,16 @@ public class WXProxy extends Proxy {
 	protected void init() {
 		mWXapi = WXAPIFactory.createWXAPI(mActivity, mAppkey, false);
 		mWXapi.registerApp(mAppkey);    
-		
-		// 此方法需要在Activity.onNewIntent方法中实现
-//		mWXapi.handleIntent(mActivity.getIntent(), new IWXAPIEventHandler() {
-//
-//			@Override
-//			public void onReq(BaseReq req) {
-//			}
-//			
-//			@Override
-//			public void onResp(BaseResp resp) {
-//			}
-//			
-//		});
 	}
 
 	@Override
 	public void setProxyActionListener(ProxyActionListener l) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void handleProxyResponse(Activity activity, IHandleListener l) {
+		mWXapi.handleIntent(activity.getIntent(), l);
 	}
 }

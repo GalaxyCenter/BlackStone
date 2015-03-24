@@ -7,8 +7,10 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import xshare.framework.IHandleListener;
 import xshare.framework.Proxy;
 import xshare.framework.ProxyActionListener;
+import xshare.framework.ProxyActivity;
 import xshare.sina.weibo.SinaWeiboParams;
 import xshare.sina.weibo.SinaWeiboProxy;
 import xshare.tencent.qzone.QZoneParams;
@@ -62,7 +64,7 @@ import apollo.widget.PostAdapter;
 import apollo.widget.PostAdapter.DisplayFloorHandle;
 import apollo.widget.PostAdapter.DisplayOtherHandle;
 
-public class PostActivity extends BaseActivity  implements View.OnClickListener, ProxyActionListener {
+public class PostActivity extends ProxyActivity  implements View.OnClickListener, ProxyActionListener {
 
 	public static final int POST_LOAD_OUTOFRANG = 1002;
 	public static final int POST_NOT_FOUND = 1003;
@@ -104,7 +106,6 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 	private PostViewHolder mViewHolder;
 	private int mFilterUserId;
 	private boolean mFlushPost;
-	
 	private static int THREADPOOL_SIZE = 4;// ??????§³
 
 	public static class PostViewHolder {
@@ -137,7 +138,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 
 				cbm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 				cbm.setText(Transforms.formatPost(mPost.getBody(), false));
-				showToast(getResources().getString(R.string.copy_data_success));
+				///showToast(getResources().getString(R.string.copy_data_success));
 			} else if (mViewHolder.quote.equals(v)) {
 				replyThread(PostMode.REPLY_QUOTE, mPost);
 			} else if (mViewHolder.reply.equals(v)) {
@@ -184,10 +185,10 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 			switch (msg.what) {
 			case POST_NOT_FOUND:
 				ApplicationException ex = (ApplicationException) msg.obj;
-				showToast(ApolloApplication.app().getString(ex.getResid()));
+				///showToast(ApolloApplication.app().getString(ex.getResid()));
 				break;
 			case POST_LOAD_OUTOFRANG:
-				showToast(getString(R.string.post_load_outofrang));
+				///showToast(getString(R.string.post_load_outofrang));
 				mFlushPost = true;
 				break;
 
@@ -228,11 +229,10 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 			ApplicationException ex = null;
 			
 			ex = ApolloApplication.app().getException();
-			if (ex != null)
-				showToast(ex.getMessage());
-			else
-				showToast(ApolloApplication.app().getString(
-						R.string.add_bookmark_succeed));
+			//if (ex != null)
+				//showToast(ex.getMessage());
+			//else
+				//showToast(ApolloApplication.app().getString(R.string.add_bookmark_succeed));
 			
 		}
 	}
@@ -258,11 +258,11 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 			ApplicationException ex = null;
 			
 			ex = ApolloApplication.app().getException();
-			if (ex != null) {
-				showToast(ex.getMessage());
-			} else {
-				showToast(ApolloApplication.app().getString(R.string.post_mark_success));
-			}
+//			if (ex != null) {
+//				showToast(ex.getMessage());
+//			} else {
+//				showToast(ApolloApplication.app().getString(R.string.post_mark_success));
+//			}
 		}
 	}
 	
@@ -675,7 +675,7 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 
 	@Override
 	public void onClick(View v) {
-		Proxy proxy;
+		
 		String text = null;
 		
 		switch(v.getId()) {
@@ -685,11 +685,11 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 			wb_param.setText(mThread.getSubject());
 			wb_param.setUrl(mThread.getUrl());
 			
-			proxy = new SinaWeiboProxy(this);
-			proxy.setProxyActionListener(this);
+			mProxy = new SinaWeiboProxy(this);
+			mProxy.setProxyActionListener(this);
 			//proxy.init();
 			// Ö´ÐÐÍ¼ÎÄ·ÖÏí
-			proxy.share(wb_param);
+			mProxy.share(wb_param);
 			
 			break;
 		case R.id.iconWeixinTimeline:
@@ -706,8 +706,8 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 			wx_params.setUrl(mThread.getUrl());
 			wx_params.setImage(ImageUtil.getResBitmap(this, R.drawable.ic_launcher));
 			
-			proxy = new WXProxy(this);
-			proxy.share(wx_params);
+			mProxy = new WXProxy(this);
+			mProxy.share(wx_params);
 			break;
 		case R.id.iconQZone:
 			QZoneParams qz_params = new QZoneParams();
@@ -716,12 +716,12 @@ public class PostActivity extends BaseActivity  implements View.OnClickListener,
 			qz_params.setText(text);
 			qz_params.setUrl(mThread.getUrl());
 			
-			proxy = new QZoneProxy(this);
-			proxy.share(qz_params);
+			mProxy = new QZoneProxy(this);
+			mProxy.share(qz_params);
 			break;
 		}
 	}
-
+	
 	@Override
 	public void onComplete(Proxy proxy, int code, Map<String, Object> map) {
 		// TODO Auto-generated method stub
