@@ -19,7 +19,7 @@ public class ProxyActivity extends Activity implements IHandleListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.activity_proxy);		
+		///setContentView(R.layout.activity_proxy);		
 	}
 
 	@Override
@@ -50,32 +50,27 @@ public class ProxyActivity extends Activity implements IHandleListener {
 	// 实现微信接口
 	@Override
 	public void onReq(BaseReq arg0) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, " wx.onreq", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void onResp(BaseResp arg0) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, " wx.onResp", Toast.LENGTH_LONG).show();
 	}
 
 	// 实现QQ空间接口
 	@Override
 	public void onCancel() {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, " qzone.onCancel", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void onComplete(Object arg0) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, " qzone.onComplete", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void onError(UiError arg0) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, " qzone.onError", Toast.LENGTH_LONG).show();
 	}
 }
