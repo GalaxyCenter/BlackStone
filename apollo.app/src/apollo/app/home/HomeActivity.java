@@ -118,6 +118,7 @@ public class HomeActivity extends BaseActivity implements
 			int width = 0;
 			
 			width = ResUtil.getEquipmentWidth(HomeActivity.this) - 98;
+			width = 240;
 			data = ResUtil.read(getAssets(), "tp_recommend.html");
 			re_html = Threads.getRecommend();
 			data = MessageFormat.format(data, re_html.get(0), re_html.get(1),
